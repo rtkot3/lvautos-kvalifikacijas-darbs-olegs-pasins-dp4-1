@@ -1,0 +1,173 @@
+.section {
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
+    padding: 30px;
+}
+
+.box {
+    border: 1px solid #E1E1E1;
+}
+
+.box-header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #E1E1E1;
+    background: #F8F8F8;
+    padding: 28px;
+}
+
+.input-log {
+    margin: 15px;
+}
+
+.input-log span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.input-log .input-select {
+    width: 100%;
+    margin-top: 15px;
+}
+
+input[type=file] {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 1px;
+    opacity: 0;
+}
+
+.file-upload-main {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    border: 1px dashed #727272;;
+    border-radius: 3px;
+}
+
+.file-upload-add {
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border: 1px dashed #727272;;
+    border-radius: 3px;
+}
+
+.upload-img {
+    position: absolute;
+}
+
+.btn-upload {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: white;
+    background: #3684CC;
+    border-radius: 3px;
+    padding: 5px 20px;
+}
+
+.btn-upload:hover {
+    background: #3176b8;
+}
+
+.log-more2 {
+    display: flex;
+}
+
+.box-more2 {
+    width: 100%;
+    margin-left: 15px;
+}
+
+.add-photo-box {
+    display: flex;
+}
+
+.box-upload {
+    margin-top: 30px; 
+    border: none; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.box-upload span {
+    font-size: 16px;
+}
+
+.box-upload input[type=checkbox] {
+    min-height: 24px;
+    min-width: 24px;
+}
+
+.chekbox-last-box {
+    display: flex; 
+    align-items: center;
+}
+
+.stretch {
+    padding-top: 50px;
+}
+
+@media only screen and (max-width: 1185px) {
+
+    .stretch {
+        padding-top: 15px;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+
+    .section {
+        padding: 0;
+    }
+
+    .log-more2 {
+        display: block;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .input-log > div {
+        margin-top: 15px;
+    }
+
+    .box-more2 {
+        margin-left: 0;
+    }
+
+    .add-photo-box {
+        display: block;
+    }
+
+    .file-upload-add {
+        margin-left: 15px;
+    }
+
+    .add-photo-box {
+        margin-left: -15px;
+        margin-right: 15px;
+    }
+
+    .box-upload {
+        flex-direction: column;
+        padding: 15px;
+        padding-top: 0;
+    }
+
+    .chekbox-last-box {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .btn-upload {
+        margin-top: 15px;
+    }
+
+}

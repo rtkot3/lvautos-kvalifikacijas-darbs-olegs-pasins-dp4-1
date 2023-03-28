@@ -1,0 +1,301 @@
+._1st-block {
+    background: #3684CC;
+}
+
+.blue-box {
+    text-align: center;
+    padding-top: 75px;
+    padding-bottom: 165px;
+}
+
+.active-ads {
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 3px;
+    color: white;
+    background-color: #44EC28;
+    padding: 5px 20px;
+}
+
+.site-header {
+    color: white;
+    font-size: 44px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.additional-info {
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+.fast-find {
+    margin-top: -20px;
+    padding: 15px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
+}
+
+.find-auto {
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    width: 100%;
+    background: #83DA9D;
+    border: none;
+    border-radius: 3px;
+    height: 80px;
+}
+
+.find-auto:hover {
+    background-color: #7bce94;
+}
+
+.find-auto-block {
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    max-width: 1185px; 
+    margin: 0 auto; 
+    padding: 0 15px; 
+    margin-top: -85px;
+}
+
+._2nd-block {
+    padding-top: 130px;
+    background: #ECF1F8;
+    padding-bottom: 30px;
+}
+
+.fast-box-find a {
+    height: 139px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fast-box-find {
+    width: 139px;
+    height: 139px;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.fast-box-find:hover {
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
+    scale: 1.2;
+}
+
+.fast-box-find img {
+    margin-bottom: 15px;
+    width: auto; 
+    height: 50px;
+}
+
+.scroll-cars-brands {
+    display: flex; 
+    justify-content: center; 
+    padding-bottom: 15px; 
+    width: 1155px;
+}
+
+.lasts-header {
+    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.lasts-header h2 {
+    margin-bottom: 15px;
+    font-size: 44px;
+}
+
+.lasts-header span {
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.car-info-box {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.car-info-box span {
+    font-size: 16px;
+}
+
+.car-info-box a {
+    font-size: 16px;
+}
+
+.car-info-box a:hover {
+    color: #3684CC;
+}
+
+.car-price {
+    padding: 10px 0;
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+    background: #FBFBFB;
+}
+
+.car-info-box {
+    margin-left: 15px;
+}
+
+.last-ad {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
+}
+
+.last-ad-img {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: calc(100% - 10px);
+    height: 100%;
+    max-height: 160px;
+    min-height: 160px;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.lasts-ads {
+    display: flex;
+    justify-content: center;
+}
+
+.fast-find-box-second {
+    display: flex; 
+    margin-top: 15px;
+}
+
+@media only screen and (max-width: 1185px) {
+
+    .hyundai {
+      display: none;
+    }
+
+    .lasts-header {
+        margin-bottom: 20px;
+    }
+
+    .mega-last-ad {
+        display: none;
+    }
+
+}
+
+@media only screen and (max-width: 1015px) {
+
+    .fast-car-box {
+        flex-direction: column;
+    }
+
+    .fast-box-find  {
+        margin-left: 30px;
+    }
+
+    .section-box-fast-cars {
+        justify-content: center;
+        margin-left: -30px;
+    }
+
+    #section-box-fast-cars-first {
+        margin-bottom: 30px;
+    }
+
+}
+
+@media only screen and (max-width: 875px) {
+
+    .fast-find-box {
+       flex-direction: column; 
+    }
+
+    .fast-find {    
+        padding-top: 0;
+    }
+
+    .fast-find-box-second {
+        margin-top: 0;
+    }
+
+    .find-auto {
+        margin-top: 15px;
+    }
+
+    .fast-find-box > .input-select {
+        margin-top: 15px;
+    }
+
+    ._2nd-block {
+        padding-top: 505px;
+    }
+
+    .lasts-ads {
+        flex-direction: column;
+        align-items: center;
+        margin-left: -15px;
+        margin-right: 15px;
+    }
+
+    .last-ad {
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+
+}
+
+@media only screen and (max-width: 550px) {
+
+    .section-box-fast-cars {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #section-box-fast-cars-first {
+        margin-bottom: 0;
+    }
+
+    .fast-car-box {
+        margin-top: -30px;
+    }
+
+    .fast-box-find {
+        width: calc(100% - 30px);
+        margin-top: 30px;
+    }
+
+    .fast-box-find:hover {
+        scale: 1;
+    }
+
+    .active-ads {
+        font-size: 16px;
+    }
+
+    .site-header {
+        font-size: 40px;
+    }
+
+    .lasts-header h2 {
+        font-size: 40px;
+    }
+
+}
+
+@media only screen and (max-width: 330px) {
+
+    .active-ads {
+        font-size: 12px;
+    }
+
+}
+

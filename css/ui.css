@@ -1,0 +1,157 @@
+.blur {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(6px);
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.24);
+}
+
+.ui {
+    padding: 30px;
+    border: 1px solid #E1E1E1;
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    width: 450px;
+}
+
+.ui-logo {
+    cursor: default;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -15px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+.ui-head-btn {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.ui h1 {
+    font-weight: normal;
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.ui .ui-buttons {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.ui-btn {
+    cursor: pointer;
+    background: #FFFFFF;
+    border: 1px solid #E1E1E1;
+    border-radius: 3px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.ui-btn:hover {
+    background: #f7f7f7;
+}
+
+.active-ui-btn {
+    background: #3684CC;
+    border: none;
+    color: white;
+}
+
+.active-ui-btn:hover {
+    background: #3076b8;
+}
+
+.ui-input {
+    width: 100%; 
+    height: 60px; 
+    margin-bottom: 15px
+}
+
+.ui-input input {
+    padding-left: 20px
+}
+
+.ui-whatsapp {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ui-whatsapp input {
+    margin-right: 10px;
+}
+
+.ui-whatsapp span {
+    font-size: 16px;
+}
+
+.ui-btn-submit {
+    cursor: pointer;
+    background: #3684CC;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 35px;
+}
+
+.ui-btn-submit:hover {
+    background: #3076b8;
+}
+
+.forgot-password {
+    margin-bottom: 15px;
+}
+
+.forgot-password span {
+    cursor: pointer;
+    color: #3684CC;
+    font-size: 16px;
+}
+
+.forgot-password span:hover {
+    text-decoration: underline;
+}
+
+.ui-profile {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    border: 4px solid #E1E1E1;
+}
+
+.file-upload {
+    margin-left: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border: 1px dashed #727272;
+    border-radius: 3px;
+}
+
+.upload-img {
+    position: absolute;
+}
+
+input[type=file] {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 1px;
+    opacity: 0;
+}
