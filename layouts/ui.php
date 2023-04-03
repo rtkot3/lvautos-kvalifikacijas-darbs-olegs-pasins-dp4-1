@@ -20,7 +20,15 @@
                 <button class="ui-btn active-ui-btn" style="margin-left: 15px">Reģistrācija</button>
             </div>
 
-            <form action="#">
+            <form id="form-register" onsubmit="return false;">
+
+            <div class="error-msg" style="display: none">
+                <div class="error-line"></div>
+                <div class="error-span">
+                    <span id="err-msg"></span>
+                </div>
+                <img src="ico/close_error_msg.svg" class="close-msg" onclick="this.parentElement.style.display = 'none';">
+            </div>
 
             <div class="input-select ui-input">
                 <input type="text" placeholder="Vārds" name="name">
@@ -46,12 +54,12 @@
             </div>
 
             <div class="ui-whatsapp">
-                <input type="checkbox" name="whatsapp">
+                <input type="checkbox" name="whatsapp_status">
                 <span>Vai Jums ir WhatsApp?</span>
             </div>
 
             <div style="text-align: center">
-                <button class="ui-btn-submit">Reģistrācija</button>
+                <button class="ui-btn-submit" id="btn-register">Reģistrācija</button>
             </div>
 
             </form>

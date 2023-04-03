@@ -7,5 +7,6 @@
 </body>
 
 <script src="/js/javascript.js"></script>
+<script src="/js/registration.js"></script>
 
 </html>

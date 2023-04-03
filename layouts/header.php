@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 if (isset($home_active)) { $home_active = 'links active-link'; } else { $home_active = 'links'; }
 
