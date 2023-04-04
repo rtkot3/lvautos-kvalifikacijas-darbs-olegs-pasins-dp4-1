@@ -8,6 +8,15 @@ if (isset($cont_active)) { $cont_active = 'links active-link'; } else { $cont_ac
 
 if (!isset($show_upload)) { $show_upload = false; }
 
+if (!empty($_SESSION['login']) ) {
+    $ui = 'onclick="UI(true, \'profile\');"';
+    $ui_name = $_SESSION['login']['name'];
+    $ui_phone = $_SESSION['login']['phone'];
+} else {
+    $ui = 'onclick="UI(true, \'login\');"';
+    $ui_name = 'Pieslēgties';
+    $ui_phone = '29123456';
+}
 
 ?>
 
@@ -36,9 +45,10 @@ if (!isset($show_upload)) { $show_upload = false; }
                 <a href="/" class="logo"><span>LV</span>AUTO'S</a>
             </div>
 
-            <div class="sub-block profile" id="profile" onclick="UI(true, 'login');">
+            <div class="sub-block profile" id="profile" <?php echo $ui; ?> >
                 <img style="margin-right: 15px;" class="icon_22x22" src="ico/user.svg">
-                <span>Pieslēgties</span>
+
+                <span><?php echo $ui_name; ?></span>
                 
             </div>
 

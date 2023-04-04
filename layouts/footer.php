@@ -7,6 +7,14 @@
 </body>
 
 <script src="/js/javascript.js"></script>
-<script src="/js/registration.js"></script>
+
+<?php 
+
+if (empty($_SESSION['login']) ) {
+    echo '<script src="/js/registration.js"></script>';
+    echo '<script src="/js/auth.js"></script>';
+}
+
+?>
 
 </html>

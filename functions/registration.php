@@ -72,10 +72,22 @@ if ($password_again != $password) {
 
 // -------------------------- //
 
+$password = md5($password);
+$email = strtolower($email);
+
+if ($whatsapp_status) { 
+    $whatsapp_status = '1'; 
+} else { 
+    $whatsapp_status = '0'; 
+}
+
+// -------------------------- //
+
 include ("sql_connection.php");
 
 $result = $mysql -> query(
-    "SELECT * FROM `users` WHERE `email` = '$email'"
+    "SELECT * FROM `users` 
+    WHERE `email` = '$email'"
 );
 
 $result = $result -> fetch_assoc();
@@ -86,21 +98,20 @@ if ($result != null) {
 
 // -------------------------- //
 
-$password = md5($password);
-
-if ($whatsapp_status) { 
-    $whatsapp_status = '1'; 
-} else { 
-    $whatsapp_status = '0'; 
-}
-
-// -------------------------- //
-
 $mysql -> query(
-    "INSERT INTO `users` (`name`,`email`,`phone`,`password`,`whatsapp_status`,`is_admin`) VALUES('$name','$email','$phone','$password','$whatsapp_status','0')"
+    "INSERT INTO `users` (`name`,`email`,`phone`,`password`,`whatsapp_status`,`is_admin`) 
+    VALUES('$name','$email','$phone','$password','$whatsapp_status','0')"
 );
 
 // -------------------------- //
+
+$_SESSION['login'] = array(
+    'name' => $name,
+    'email' => $email,
+    'phone' => $phone,
+    'profile_img' => null,
+    'is_admin' => 0
+);
 
 echo 'okay'; exit();
 

@@ -14,9 +14,16 @@
 
 ## Demo
 
-- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 28.03.2023)
+- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 04.04.2023)
 
 ## Pēdējās izmaiņas
+
+-- [ 04.04.2023 ] --
+
+- Pievienota pilna konta reģistrācija;
+- Pievienota pilna konta pieteikšanās;
+- Iespēja iziet no konta;
+- Pieejama demonstrācijas vietne.
 
 -- [ 03.04.2023 ] --
 
@@ -24,7 +31,7 @@
 - Pievienotas visas iespējamās konta reģistrācijas pārbaudes;
 - Ja ievades kritērijs nav pareizs, tiek parādīts [kļūdas ziņojums](https://imgur.com/a/a6krhMo);
 - [Datu bāzes shēma ir pilnībā izveidota](https://imgur.com/a/4F3WL2e);
-- Izveidota datubāze ["users"](https://imgur.com/a/fGJd0Dp);
+- Izveidota datubāze ["users"](https://imgur.com/a/fGJd0Dp).
 
 -- [ 28.03.2023 ] --
 

@@ -85,10 +85,18 @@
                 <button class="ui-btn" style="margin-left: 15px" onclick="switchto('register');">Reģistrācija</button>
             </div>
 
-            <form action="#">
+            <form id="form-login" onsubmit="return false;">
+
+                <div class="error-msg" style="display: none">
+                    <div class="error-line"></div>
+                    <div class="error-span">
+                        <span id="err-msg"></span>
+                    </div>
+                    <img src="ico/close_error_msg.svg" class="close-msg" onclick="this.parentElement.style.display = 'none';">
+                </div>
 
                 <div class="input-select ui-input">
-                    <input type="email" placeholder="E-Pasts" name="name">
+                    <input type="email" placeholder="E-Pasts" name="email">
                 </div>
 
                 <div class="input-select ui-input">
@@ -100,7 +108,7 @@
                 </div>
 
                 <div style="text-align: center">
-                    <button class="ui-btn-submit">Pieslēgties</button>
+                    <button class="ui-btn-submit" id="btn-login">Pieslēgties</button>
                 </div>
 
             </form>
@@ -160,7 +168,7 @@
                 <button class="ui-btn" style="margin-left: 15px" onclick="switchto('my-cars');">Manas Mašīnas</button>
             </div>
 
-            <form action="#">
+            <form action="#" onsubmit="return false;">
 
                 <div class="ui-profile">
                     <img class="profile-img" src="ico/profile2.jpg">
@@ -173,18 +181,24 @@
                 </div>
 
                 <div class="input-select ui-input">
-                    <input type="text" placeholder="Vārds" name="name" value="Oļegs">
+                    <input type="text" placeholder="Vārds" name="name" value="<?php echo $ui_name; ?>">
                 </div>
 
                 <div style="display: flex; align-items: center; margin-bottom: 15px">
                     <label>+371</label>
                     <div class="input-select ui-input" style="margin-bottom: 0; margin-left: 15px">
-                        <input type="tel" placeholder="Tālrunis" name="phone" value="23456789">
+                        <input type="tel" placeholder="Tālrunis" name="phone" value="<?php echo $ui_phone; ?>">
                     </div>
                 </div>
 
                 <div style="text-align: center">
                     <button class="ui-btn-submit">Saglabāt</button>
+                </div>
+
+                <div style="text-align: center">
+                    <button class="ui-btn-logout">
+                        <a href="/functions/logout.php">Izejiet</a>
+                    </button>
                 </div>
 
             </form>
