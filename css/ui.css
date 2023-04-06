@@ -47,12 +47,16 @@
 }
 
 .ui-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     background: #FFFFFF;
     border: 1px solid #E1E1E1;
     border-radius: 3px;
     padding: 10px 0;
     width: 100%;
+    height: 40px;
 }
 
 .ui-btn:hover {
@@ -128,6 +132,7 @@
 .ui-btn-logout a {
     color: white;
     padding: 10px 35px;
+    width: 100%;
 }
 
 .ui-btn-logout:hover {
@@ -153,7 +158,7 @@
     margin-bottom: 15px;
 }
 
-.profile-img {
+.ui-profile-img {
     width: 100px;
     height: 100px;
     border-radius: 100%;

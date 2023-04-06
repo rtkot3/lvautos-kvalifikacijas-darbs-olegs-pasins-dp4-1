@@ -168,14 +168,22 @@
                 <button class="ui-btn" style="margin-left: 15px" onclick="switchto('my-cars');">Manas Mašīnas</button>
             </div>
 
-            <form action="#" onsubmit="return false;">
+            <form action="#" onsubmit="return false;" id="form-profile">
+
+                <div class="error-msg" style="display: none">
+                    <div class="error-line"></div>
+                    <div class="error-span">
+                        <span id="err-msg"></span>
+                    </div>
+                    <img src="ico/close_error_msg.svg" class="close-msg" onclick="this.parentElement.style.display = 'none';">
+                </div>
 
                 <div class="ui-profile">
-                    <img class="profile-img" src="ico/profile2.jpg">
+                    <img class="ui-profile-img" src="ico/profile2.jpg">
 
                     <div class="file-upload">
                         <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <input type="file" name="image" accept="image/png, image/jpeg">
                     </div>
 
                 </div>
@@ -192,7 +200,7 @@
                 </div>
 
                 <div style="text-align: center">
-                    <button class="ui-btn-submit">Saglabāt</button>
+                    <button class="ui-btn-submit" id="btn-save-profile" type="submit">Saglabāt</button>
                 </div>
 
                 <div style="text-align: center">

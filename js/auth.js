@@ -25,8 +25,6 @@ function login() {
     request.onload = () => {
 
         if (request.status >= 400) { error_msg.style.display = 'flex'; error_span.innerText = 'Nav savienojuma!'; }
-
-        console.log(request.response == 'okay');
         
         if (request.response == 'okay') {
 
@@ -35,6 +33,10 @@ function login() {
 
         } else {
             error_msg.style.display = 'flex'; btn_login.innerHTML = 'Pieslēgties';
+        }
+
+        if (request.response == 'not_allowed_method') {
+            error_span.innerText = 'Šī metode nav pieejama, tikai "POST"!'; return;
         }
         
         if (request.response == 'reload') {

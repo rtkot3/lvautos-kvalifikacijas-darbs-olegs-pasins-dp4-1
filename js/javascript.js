@@ -47,3 +47,5 @@ function menu() {
         document.querySelector('nav').style.display = 'none';
     }
 }
+
+var image = new Image(); image.src = 'ico/loading.gif';

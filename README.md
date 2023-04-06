@@ -18,6 +18,11 @@
 
 ## Pēdējās izmaiņas
 
+-- [ 06.04.2023 ] --
+
+- Pilnībā izveidota visa datu bāzes shēma programmā "phpmyadmin";
+- Sākta "profila rediģēšanas" izstrāde.
+
 -- [ 04.04.2023 ] --
 
 - Pievienota pilna konta reģistrācija;

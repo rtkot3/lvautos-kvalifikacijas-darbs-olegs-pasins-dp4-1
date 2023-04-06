@@ -13,6 +13,8 @@
 if (empty($_SESSION['login']) ) {
     echo '<script src="/js/registration.js"></script>';
     echo '<script src="/js/auth.js"></script>';
+} else {
+    echo '<script src="/js/edit_profile.js"></script>';
 }
 
 ?>

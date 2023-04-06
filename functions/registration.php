@@ -2,6 +2,12 @@
 
 // -------------------------- //
 
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    echo 'not_allowed_method'; exit();
+}
+
+// -------------------------- //
+
 if (!isset($_POST['name'])) { echo 'reload'; exit(); }
 
 if (!isset($_POST['email'])) { echo 'reload'; exit(); }
