@@ -113,6 +113,11 @@ footer span {
     height: 24px;
 }
 
+.icon_30x30 {
+    width: 30px;
+    height: 30px;
+}
+
 .input-select {
     position: relative;
     display: flex;

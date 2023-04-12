@@ -1,3 +1,19 @@
+<?php
+
+$user_profile_image = '';
+
+if (isset($_SESSION['login'])) {
+    
+    if ($_SESSION['login']['profile_img'] == null) {
+        $user_profile_image = "ico/default_profile_image.jpg";
+    } else {
+        $user_profile_image = 'data:image/jpeg;base64,' . $_SESSION['login']['profile_img'];
+    }
+
+}
+
+?>
+
 <div class="blur" id="ui" style="display: none">
     <div class="ui" id="ui-main">
 
@@ -179,11 +195,12 @@
                 </div>
 
                 <div class="ui-profile">
-                    <img class="ui-profile-img" src="ico/profile2.jpg">
+                    <div class="ui-profile-img" style="background-image: url(<?php echo $user_profile_image; ?>)"></div>
 
                     <div class="file-upload">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file" name="image" accept="image/png, image/jpeg">
+                    <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                 </div>

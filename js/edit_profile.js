@@ -41,4 +41,17 @@ function edit_profile() {
 
 }
 
+function fileUploaded(file, element) {
+    
+    element.style.background = "#c7ffc7";
+
+    var file = file.files[0];
+
+    element.querySelector('.uploaded-image-name').innerText  = file.name;
+
+    element.querySelector('.upload-img').style.display = 'none';
+
+}
+
 document.querySelector('#btn-save-profile').onclick = edit_profile;
+
