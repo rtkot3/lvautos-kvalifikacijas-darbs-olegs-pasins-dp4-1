@@ -6,6 +6,7 @@ $css = 'contacts';
 $home_active;
 $ads_active;
 $cont_active = true;
+$admin_active;
 
 $show_upload = true;
 

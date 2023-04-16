@@ -6,10 +6,11 @@ $css = 'index';
 $home_active = true;
 $ads_active;
 $cont_active;
+$admin_active;
 
 $show_upload = true;
 
-    require 'layouts/header.php'; 
+require 'layouts/header.php'; 
 
 ?>
 

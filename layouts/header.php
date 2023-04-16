@@ -1,17 +1,29 @@
 <?php session_start();
 
+include ("functions/update_profile.php");
+
 if (isset($home_active)) { $home_active = 'links active-link'; } else { $home_active = 'links'; }
 
 if (isset($ads_active)) { $ads_active = 'links active-link'; } else { $ads_active = 'links'; }
 
 if (isset($cont_active)) { $cont_active = 'links active-link'; } else { $cont_active = 'links'; }
 
+if (isset($admin_active)) { $admin_active = 'links active-link'; } else { $admin_active = 'links'; }
+
 if (!isset($show_upload)) { $show_upload = false; }
 
-if (!empty($_SESSION['login']) ) {
+$admin_link = '';
+
+if (isset($_SESSION['login']) ) {
     $ui = 'onclick="UI(true, \'profile\');"';
     $ui_name = $_SESSION['login']['name'];
     $ui_phone = $_SESSION['login']['phone'];
+
+    if ($_SESSION['login']['is_admin'] == '1') {
+        $admin_link = '<a href="admin" class="' . $admin_active . '">ADMIN</a>';
+    }
+
+
 } else {
     $ui = 'onclick="UI(true, \'login\');"';
     $ui_name = 'Pieslēgties';
@@ -61,7 +73,8 @@ if (!empty($_SESSION['login']) ) {
             <div class="sub-block menu">
                 <a href="/" class="<?php echo $home_active ?>" style="margin-right: 15px;">HOME</a>
                 <a href="ads" class="<?php echo $ads_active ?>" style="margin-right: 15px;">SLUDINĀJUMI</a>
-                <a href="contacts" class="<?php echo $cont_active ?>">KONTAKTI</a>
+                <a href="contacts" class="<?php echo $cont_active ?>" style="margin-right: 15px;">KONTAKTI</a>
+                <?php echo $admin_link; ?>
             </div>
 
             <div class="sub-block nav">
@@ -84,6 +97,7 @@ if (!empty($_SESSION['login']) ) {
             <a href="/" class="<?php echo $home_active ?>">HOME</a>
             <a href="ads" class="<?php echo $ads_active ?>">SLUDINĀJUMI</a>
             <a href="contacts" class="<?php echo $cont_active ?>">KONTAKTI</a>
+            <?php echo $admin_link; ?>  
         </nav>
 
     </section>

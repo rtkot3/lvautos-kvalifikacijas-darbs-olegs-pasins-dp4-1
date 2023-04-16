@@ -6,6 +6,7 @@ $css = 'view';
 $home_active;
 $ads_active = true;
 $cont_active;
+$admin_active;
 
 $show_upload = true;
 

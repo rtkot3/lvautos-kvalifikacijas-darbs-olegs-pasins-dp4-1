@@ -1,6 +1,7 @@
 <?php
 
 $user_profile_image = '';
+$admin_label = '';
 
 if (isset($_SESSION['login'])) {
     
@@ -8,6 +9,10 @@ if (isset($_SESSION['login'])) {
         $user_profile_image = "ico/default_profile_image.jpg";
     } else {
         $user_profile_image = 'data:image/jpeg;base64,' . $_SESSION['login']['profile_img'];
+    }
+
+    if ($_SESSION['login']['is_admin'] == '1') {
+        $admin_label = '<label class="admin_label">admin</label>';
     }
 
 }
@@ -177,7 +182,7 @@ if (isset($_SESSION['login'])) {
 
             </div>
 
-            <h1>Jūsu Profils</h1>
+            <h1>Jūsu Profils<?php echo $admin_label; ?></h1>
 
             <div class="ui-buttons">
                 <button class="ui-btn active-ui-btn">Jūsu Profils</button>

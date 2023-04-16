@@ -229,3 +229,11 @@ input[type=file] {
     cursor: pointer;
     margin: 0 15px;
 }
+
+.admin_label {
+    color: white;
+    background: rgb(0, 230, 0);
+    padding: 0 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+}

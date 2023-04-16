@@ -4,8 +4,9 @@ $title = 'Auto Pārdošanas Sludinājumi';
 $css = 'adss';
 
 $home_active;
-$ads_active = true;
+$ads_active;
 $cont_active;
+$admin_active;
 
 $show_upload = true;
 

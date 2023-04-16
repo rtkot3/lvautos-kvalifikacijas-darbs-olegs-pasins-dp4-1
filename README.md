@@ -18,6 +18,13 @@
 
 ## Pēdējās izmaiņas
 
+-- [ 16.04.2023 ] --
+
+- Novērsta kļūda, kad vienā ierīcē maināt konta informāciju, bet citā ierīcē izmaiņas nav redzamas;
+- [Uzlabota datu bāzes shēma](https://imgur.com/a/4F3WL2e);
+- Sākts administratora paneļa izstrādes process;
+- Izlaboti nelieli dizaina lēmumi "css" un "html" failos.
+
 -- [ 12.04.2023 ] --
 
 - Pabeigts darbs ar "profila rediģēšanas";
