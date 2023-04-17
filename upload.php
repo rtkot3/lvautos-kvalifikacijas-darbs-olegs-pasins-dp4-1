@@ -1,4 +1,12 @@
-<?php 
+<?php session_start();
+
+ini_set('display_errors', 0);
+
+if (!isset($_SESSION['login'])) {
+    
+    header('Location: /');
+
+}
 
 $title = 'Auto Pārdošanas Sludinājumi';
 $css = 'upload';

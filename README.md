@@ -18,6 +18,11 @@
 
 ## Pēdējās izmaiņas
 
+-- [ 17.04.2023 ] --
+
+- Pievienoti visi dati par automašīnu modeļi, krāsas, motori utt "mysql" datubāzē;
+- Uzsācis funkcijas "get_data" izstrādes procesu, lai parādītu kategorijas par automašīnu informāciju.
+
 -- [ 16.04.2023 ] --
 
 - Novērsta kļūda, kad vienā ierīcē maināt konta informāciju, bet citā ierīcē izmaiņas nav redzamas;

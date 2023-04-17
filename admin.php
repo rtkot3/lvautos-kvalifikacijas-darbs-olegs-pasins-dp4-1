@@ -1,4 +1,20 @@
-<?php
+<?php session_start();
+
+ini_set('display_errors', 0);
+
+if (!isset($_SESSION['login'])) {
+    
+    header('Location: /');
+
+} else {
+
+    if ($_SESSION['login']['is_admin'] == '0') {
+
+        header('Location: /');
+
+    }
+
+}
 
 $title = 'Auto Pārdošanas Sludinājumi';
 $css = 'admin';
@@ -13,21 +29,15 @@ $show_upload = true;
 
 require 'layouts/header.php'; 
 
-if (!isset($_SESSION['login'])) {
-    
-    exit;
-
-} else {
-
-    if ($_SESSION['login']['is_admin'] == '0') {
-        exit;
-    }
-
-}
-
 ?>
 
-<div class="container stretch">
+<div class="container stretch" style="padding-top: 50px">
+
+<div>
+
+</div>
+
+</div>
     
 </div>
 

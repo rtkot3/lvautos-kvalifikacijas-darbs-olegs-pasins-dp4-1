@@ -85,7 +85,17 @@ if (isset($_SESSION['login']) ) {
             
             if ($show_upload) {
 
-                echo '<div class="sub-block"> <a class="upload-ad no-long-upload-ad" href="upload"><img class="icon_22x22" src="ico/ad-upload.svg"></a> <a href="upload" class="upload-ad long-upload-ad">Iesniegt Sludinājumu</a></div>';
+                if (isset($_SESSION['login'])) {
+
+                    echo '<div class="sub-block"> <a class="upload-ad no-long-upload-ad" href="upload"><img class="icon_22x22" src="ico/ad-upload.svg"></a> <a href="upload" class="upload-ad long-upload-ad">Iesniegt Sludinājumu</a></div>';
+
+                } else {
+
+                    echo '<div class="sub-block"> <a onclick="UI(true, \'login\');" class="upload-ad no-long-upload-ad"><img class="icon_22x22" src="ico/ad-upload.svg"></a> <a onclick="UI(true, \'login\');" class="upload-ad long-upload-ad">Iesniegt Sludinājumu</a></div>';
+
+                }
+
+                
 
             }
             
