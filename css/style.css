@@ -181,6 +181,7 @@ footer span {
 
 .input-select select option {
     border: 1px solid #E1E1E1;
+    font-size: 16px;
 }
 
 .active-link {

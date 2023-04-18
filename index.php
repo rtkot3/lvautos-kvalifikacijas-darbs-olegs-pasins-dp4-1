@@ -11,6 +11,7 @@ $admin_active;
 $show_upload = true;
 
 require 'layouts/header.php'; 
+require "functions/get_data.php";
 
 ?>
 
@@ -31,11 +32,9 @@ require 'layouts/header.php';
                 <div class="fast-find-box" style="display: flex;">
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
-                        <select>
+                        <select id="brands" onchange="updateModels(this);">
                             <option value="" disabled selected>- Brands -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data(); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -43,11 +42,8 @@ require 'layouts/header.php';
                     </div>
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
-                        <select disabled>
+                        <select id="models" disabled>
                             <option value="" disabled selected>- Modelis -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -55,11 +51,9 @@ require 'layouts/header.php';
                     </div>
 
                     <div class="input-select" style="width: 100%;">
-                        <select>
-                            <option value="" disabled selected>- Gads -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                        <select id="transmissions">
+                            <option value="" disabled selected>- Ātrumkarba -</option>
+                            <?php get_data("transmission"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -71,11 +65,9 @@ require 'layouts/header.php';
                 <div class="fast-find-box fast-find-box-second">
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
-                        <select>
+                        <select id="motor_types">
                             <option value="" disabled selected>- Dzinēja Tips -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data("motor_type"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -83,11 +75,9 @@ require 'layouts/header.php';
                     </div>
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
-                        <select>
+                        <select id="locations">
                             <option value="" disabled selected>- Rajons -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data("location"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/location-black.svg" class="icon_20x20">
@@ -309,6 +299,8 @@ require 'layouts/header.php';
     </div>
 
 </div>
+
+<script src="/js/index.js"></script>
 
 <?php 
 

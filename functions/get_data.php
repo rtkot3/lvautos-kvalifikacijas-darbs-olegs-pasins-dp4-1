@@ -1,77 +1,74 @@
-<?php session_start();
+<?php
 
-include ("sql_connection.php");
+function get_data($value_get_data = "brand") {
 
-$json = [];
-$result = null;
-$value = null;
+    include ("sql_connection.php");
 
-if (isset($_GET['cars_bodys'])) {
+    if ($value_get_data == "body") {
 
-    $value = "body";
+        $result = $mysql -> query(
+            "SELECT * FROM `cars_bodys`"
+        );
 
-    $result = $mysql -> query(
-        "SELECT * FROM `cars_bodys`"
-    );
+    } else if ($value_get_data == "brand") {
 
-} else if (isset($_GET['cars_brands'])) {
+        $result = $mysql -> query(
+            "SELECT * FROM `cars_brands`"
+        );
 
-    $value = "brand";
+    } else if ($value_get_data == "color") {
 
-    $result = $mysql -> query(
-        "SELECT * FROM `cars_brands`"
-    );
+        $result = $mysql -> query(
+            "SELECT * FROM `cars_colors`"
+        );
 
-} else if (isset($_GET['cars_colors'])) {
+    } else if ($value_get_data == "location") {
 
-    $value = "color";
+        $result = $mysql -> query(
+            "SELECT * FROM `cars_locations`"
+        );
 
-    $result = $mysql -> query(
-        "SELECT * FROM `cars_colors`"
-    );
+    } else if ($value_get_data == "motor_type") {
 
-} else if (isset($_GET['cars_locations'])) {
+        $result = $mysql -> query(
+            "SELECT * FROM `cars_motor_types`"
+        );
+        
+    } else if ($value_get_data == "transmission") {
 
-    $value = "location";
+        $result = $mysql -> query(
+            "SELECT * FROM `cars_transmissions`"
+        );
+        
+    }
 
-    $result = $mysql -> query(
-        "SELECT * FROM `cars_locations`"
-    );
-
-} else if (isset($_GET['cars_models'])) {
-
-    exit;
-
-} else if (isset($_GET['cars_motor_types'])) {
-
-    $value = "motor_type";
-
-    $result = $mysql -> query(
-        "SELECT * FROM `cars_motor_types`"
-    );
-    
-} else if (isset($_GET['cars_transmissions'])) {
-
-    $value = "transmission";
-
-    $result = $mysql -> query(
-        "SELECT * FROM `cars_transmissions`"
-    );
-    
-} else {
-
-    echo 'null';
-    exit;
+    while ($row = $result -> fetch_assoc()) {
+        echo '<option value="' . $row['id'] . '">'. $row[$value_get_data] .'</option>';
+    }
 
 }
 
-while ($row = $result -> fetch_assoc()) {
-    array_push($json, $row[$value]);
-    echo '<p>'. $row[$value] .'</p>';
+if (isset($_GET['model'])) {
+
+    if (empty($_GET['model'])) {
+        exit();
+    }
+
+    include ("sql_connection.php");
+
+    $value2 = $_GET['model'];
+
+    $result = $mysql -> query(
+        "SELECT * FROM `cars_models`
+        WHERE `brand` = '$value2'"
+    );
+
+    while ($row = $result -> fetch_assoc()) {
+        echo '<option value="' . $row['id'] . '">'. $row['model'] .'</option>';
+    }
+
+    exit(); 
 }
 
-echo json_encode($json);
-
-exit;
 
 ?>

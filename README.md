@@ -18,6 +18,11 @@
 
 ## Pēdējās izmaiņas
 
+-- [ 18.04.2023 ] --
+
+- Tagad vietnes galvenajā lapā gandrīz ir pieejama automašīnu [meklēšana](https://imgur.com/a/6OM5hHK) pēc kategorijas;
+- Vietnē ir uzlaboti nelieli uzlabojumi kodā.
+
 -- [ 17.04.2023 ] --
 
 - Pievienoti visi dati par automašīnu modeļi, krāsas, motori utt "mysql" datubāzē;
