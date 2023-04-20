@@ -19,12 +19,23 @@ $admin_active;
 $show_upload = false;
 
 require 'layouts/header.php'; 
+require "functions/get_data.php";
+
+$date = date("Y-m-d");
 
 ?>
 
 <div class="container stretch">
 
-    <section class="section">
+    <section class="section" id="form-upload">
+
+        <div class="error-msg" style="display: none">
+            <div class="error-line"></div>
+            <div class="error-span">
+                <span id="err-msg-upload"></span>
+            </div>
+            <img src="ico/close_error_msg.svg" class="close-msg" onclick="this.parentElement.style.display = 'none';">
+        </div>
 
         <section class="box">
             <div class="box-header">
@@ -35,7 +46,7 @@ require 'layouts/header.php';
                 <span>Transportlīdzekļa numurs</span>
 
                 <div class="input-select">
-                    <input type="text" placeholder="AB1234">
+                    <input name="registration_number" type="text" placeholder="AB1234">
                 </div>
 
             </div>
@@ -46,7 +57,7 @@ require 'layouts/header.php';
                     <span>VIN</span>
 
                     <div class="input-select">
-                        <input type="text" placeholder="4Y1SL65848Z411439">
+                        <input name="vin_number" type="text" placeholder="4Y1SL65848Z411439">
                     </div>
                 </div>
 
@@ -54,11 +65,19 @@ require 'layouts/header.php';
                     <span>Tehniskā apskate</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="technical_inspection">
                             <option value="" disabled selected>- Tehniskā apskate -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <option value="0">Nav</option>
+
+                            <?php
+
+                                for ($i = 0; $i < 12; $i++) {
+                                    $a = date('m.Y', strtotime($date. ' + ' . $i . ' month'));
+                                    echo "<option value=\"" . $a . "\">" . $a . "</option>";
+                                }    
+
+                            ?>
+
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -75,11 +94,9 @@ require 'layouts/header.php';
                     <span>Marka</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="brand" onchange="updateModels(this);">
                             <option value="" disabled selected>- Marka -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data("brand"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -91,7 +108,7 @@ require 'layouts/header.php';
                     <span>Modelis</span>
 
                     <div class="input-select">
-                        <select disabled>
+                        <select id="models" name="model" disabled>
                             <option value="" disabled selected>- Modelis -</option>
                             <option value="bmw">Bmw</option>
                             <option value="audi">Audi</option>
@@ -108,11 +125,18 @@ require 'layouts/header.php';
                     <span>Gads</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="year">
                             <option value="" disabled selected>- Gads -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+
+                            <?php
+
+                                for ($i = date("Y"); $i >= 1980; $i--) {
+                                    echo "<option value=\"" . $i . "\">" . $i . "</option>";
+                                }    
+                                                        
+                            ?>
+
+                            <option value="0">Cits</option>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -129,11 +153,9 @@ require 'layouts/header.php';
                     <span>Dzinējs</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="motor_type">
                             <option value="" disabled selected>- Dzinējs -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data("motor_type"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -145,11 +167,17 @@ require 'layouts/header.php';
                     <span>Litri</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="motor_power">
                             <option value="" disabled selected>- Litri -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+
+                             <?php
+
+                                for ($i = 1; $i <= 6.5; $i = $i + 0.1) {
+                                    echo "<option value=\"" . $i . "\">" . $i . "</option>";
+                                }    
+                                                        
+                            ?>
+
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -166,11 +194,9 @@ require 'layouts/header.php';
                     <span>Ātrumkārba</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="transmission">
                             <option value="" disabled selected>- Ātrumkārba -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data("transmission"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -182,7 +208,7 @@ require 'layouts/header.php';
                     <span>Nobraukums</span>
 
                     <div class="input-select">
-                        <input type="text" placeholder="Nobraukums">
+                        <input type="number" name="mileage" placeholder="Nobraukums">
                     </div>
 
                 </div>
@@ -195,11 +221,9 @@ require 'layouts/header.php';
                     <span>Automašīnas virsbūve</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="body">
                             <option value="" disabled selected>- Automašīnas virsbūve -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data("body"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -211,11 +235,9 @@ require 'layouts/header.php';
                     <span>Krāsa</span>
 
                     <div class="input-select">
-                        <select>
+                        <select name="color">
                             <option value="" disabled selected>- Krāsa -</option>
-                            <option value="bmw">Bmw</option>
-                            <option value="audi">Audi</option>
-                            <option value="mercedes">Mercedes</option>
+                            <?php get_data("color"); ?>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -226,18 +248,27 @@ require 'layouts/header.php';
 
             </div>
 
-            <div class="input-log">
-                <span>Atrašanās vieta</span>
+            <div class="input-log log-more2" style="margin-bottom: 15px">
 
-                <div class="input-select">
-                    <select>
-                        <option value="" disabled selected>- Rajons -</option>
-                        <option value="bmw">Bmw</option>
-                        <option value="audi">Audi</option>
-                        <option value="mercedes">Mercedes</option>
-                    </select>
-                    <div class="input-section-icon">
-                        <img src="ico/location-black.svg" class="icon_20x20">
+                <div style="width: 100%;">
+                    <span>Atrašanās vieta</span>
+
+                    <div class="input-select">
+                        <select name="location">
+                            <option value="" disabled selected>- Rajons -</option>
+                            <?php get_data("location"); ?>
+                        </select>
+                        <div class="input-section-icon">
+                            <img src="ico/location-black.svg" class="icon_20x20">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-more2">
+                    <span>Cena</span>
+
+                    <div class="input-select">
+                        <input type="number" name="price" placeholder="Cena">
                     </div>
                 </div>
 
@@ -252,7 +283,7 @@ require 'layouts/header.php';
 
             <div class="input-log">
                 <div class="input-select" style="height: 300px">
-                    <textarea type="text" placeholder="Atstājiet savu komentāru par automašīnu..."></textarea> 
+                    <textarea type="text" name="description" placeholder="Atstājiet savu komentāru par automašīnu..."></textarea> 
                 </div>
             </div>
 
@@ -268,8 +299,9 @@ require 'layouts/header.php';
                 <span>Vāka fotogrāfija</span>
 
                 <div class="file-upload-main">
-                    <img class="upload-img" src="ico/upload.svg">
-                    <input type="file">
+                    <label class="uploaded-image-name"></label>
+                    <img src="ico/upload.svg" class="upload-img">
+                    <input type="file" name="image_main" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                 </div>
 
             </div>
@@ -279,57 +311,71 @@ require 'layouts/header.php';
                 <span>Papildus fotogrāfijas</span>
 
                 <div class="add-photo-box">
+                    
                     <div class="file-upload-add">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add1" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add2" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add3" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add4" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add5" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
+                    
                 </div>
 
                 <div class="add-photo-box">
+                    
                     <div class="file-upload-add">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add6" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add7" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add8" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add9" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
 
                     <div class="file-upload-add" style="margin-left: 15px;">
-                        <img src="ico/upload.svg" class="icon_24x24 upload-img">
-                        <input type="file">
+                        <label class="uploaded-image-name"></label>
+                        <img src="ico/upload.svg" class="icon_30x30 upload-img">
+                        <input type="file" name="image_add10" accept="image/png, image/jpeg" onchange="fileUploaded(this, this.parentElement);">
                     </div>
+                    
                 </div>
 
             </div>
@@ -344,11 +390,12 @@ require 'layouts/header.php';
             <div class="input-log">
 
                 <div class="input-select">
-                    <select>
+                    <select name="upload_time">
                         <option value="" disabled selected>- Izvēlieties Laiku -</option>
-                        <option value="bmw">Bmw</option>
-                        <option value="audi">Audi</option>
-                        <option value="mercedes">Mercedes</option>
+                        <option value="7">1 Nedēļa</option>
+                        <option value="14">2 Nedēļas</option>
+                        <option value="21">3 Nedēļas</option>
+                        <option value="28">4 Nedēļas</option>
                     </select>
                     <div class="input-section-icon">
                         <img src="ico/calendar.svg" class="icon_20x20">
@@ -362,7 +409,7 @@ require 'layouts/header.php';
         <section class="box box-upload">
 
             <div class="chekbox-last-box">
-                <input type="checkbox" style="margin-right: 15px;">
+                <input type="checkbox" name="checkbox" style="margin-right: 15px;">
                 <span style="margin-right: 15px;">Apliecinu, ka esmu šī transportlīdzekļa īpašnieks</span>
             </div>
 
@@ -371,6 +418,8 @@ require 'layouts/header.php';
 
     </section>
 </div>
+
+<script src="/js/upload.js"></script>
 
 <?php 
 

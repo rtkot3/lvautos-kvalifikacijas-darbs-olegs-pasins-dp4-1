@@ -300,8 +300,6 @@ require "functions/get_data.php";
 
 </div>
 
-<script src="/js/index.js"></script>
-
 <?php 
 
 require 'layouts/footer.php'; 

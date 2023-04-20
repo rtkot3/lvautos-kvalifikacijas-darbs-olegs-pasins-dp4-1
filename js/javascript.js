@@ -48,4 +48,30 @@ function menu() {
     }
 }
 
+function updateModels(value) {
+
+    let request = new XMLHttpRequest();
+
+    request.open("GET", "functions/get_data?model=" + value.selectedOptions[0].value);
+
+    request.send();
+
+    request.onload = () => {
+
+        let model = document.querySelector('#models');
+        
+        model.disabled = false;
+        model.innerHTML = '<option value="" disabled selected>- Modelis -</option>' + request.response;
+        
+    }
+
+}
+
+function fileUploaded(file, element) {
+    element.style.background = "#c7ffc7";
+    var file = file.files[0];
+    element.querySelector('.uploaded-image-name').innerText  = file.name;
+    element.querySelector('.upload-img').style.display = 'none';
+}
+
 var image = new Image(); image.src = 'ico/loading.gif';

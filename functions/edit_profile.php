@@ -58,8 +58,6 @@ if (isset($_FILES['image'])) {
 $_SESSION['login']['name'] = $name;
 $_SESSION['login']['phone'] = $phone;
 
-// base64_encode($blob)
-
 echo 'okay'; exit();
 
 ?>

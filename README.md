@@ -11,12 +11,20 @@
 ## Vietnes dizains
 
 - [Figma](https://www.figma.com/file/l4KA0CRIgfZCrlIokoBjvP/LatvianCars?node-id=0-1&t=HQsF8kvIfpJ1Mi9p-0)
+- [Datubaze](https://imgur.com/a/4F3WL2e)
 
 ## Demo
 
-- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 12.04.2023)
+- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 20.04.2023)
 
 ## Pēdējās izmaiņas
+
+-- [ 20.04.2023 ] --
+
+- Tagad ir iespēja nosūtīt pieprasījumu publicēt auto sludinājumu (Servera puse nav gatava);
+- [Uzlabota datu bāzes shēma.](https://imgur.com/a/4F3WL2e) Pievienota jauna rindiņa "ad_upload_time", lai izvēlētos, cik ilgi reklāma tiks rādīta vietnē;
+- Izlabotas kļūdas "figma" dizainā;
+- Pieejama demonstrācijas vietne.
 
 -- [ 18.04.2023 ] --
 

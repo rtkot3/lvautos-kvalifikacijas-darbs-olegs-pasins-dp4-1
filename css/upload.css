@@ -62,13 +62,17 @@ input[type=file] {
 }
 
 .btn-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     border: none;
     outline: none;
     color: white;
     background: #3684CC;
     border-radius: 3px;
-    padding: 5px 20px;
+    width: 240px;
+    height: 35px;
 }
 
 .btn-upload:hover {
@@ -112,6 +116,10 @@ input[type=file] {
 
 .stretch {
     padding-top: 50px;
+}
+
+html { 
+    scroll-behavior: smooth; 
 }
 
 @media only screen and (max-width: 1185px) {

@@ -36,20 +36,32 @@ function edit_profile() {
         } else {
             error_msg.style.display = 'flex'; btn_save_profile.innerHTML = 'Saglabāt';
         }
+
+        if (request.response == 'not_allowed_method') {
+            error_span.innerText = 'Šī metode nav pieejama, tikai "POST"!'; return;
+        }
+
+        if (request.response == 'reload') {
+            error_span.innerText = 'Kļūda, atkārtoti ielādējiet lapu!'; return;
+        }
+
+        if (request.response == 'no_name') {
+            error_span.innerText = 'Jūs neievadījāt savu vārdu!'; return;
+        }
+
+        if (request.response == 'no_phone') {
+            error_span.innerText = 'Jūs neievadījāt savu tālruņa numuru!'; return;
+        }
+
+        if (request.response == 'max_len_name') {
+            error_span.innerText = 'Vards pārsniedz atļauto rakstzīmju ierobežojumu!'; return;
+        }
+
+        if (request.response == 'wrong_phone') {
+            error_span.innerText = 'Mobilā tālruņa formātam ir jābūt latviešu formātā: "29123456"!'; return;
+        }
         
     }
-
-}
-
-function fileUploaded(file, element) {
-    
-    element.style.background = "#c7ffc7";
-
-    var file = file.files[0];
-
-    element.querySelector('.uploaded-image-name').innerText  = file.name;
-
-    element.querySelector('.upload-img').style.display = 'none';
 
 }
 
