@@ -10,7 +10,6 @@ function upload() {
     error_msg.style.display = 'none'; 
 
     var technical_inspection = form_upload.querySelector('select[name=technical_inspection]').value;
-    var brand = form_upload.querySelector('select[name=brand]').value;
     var model = form_upload.querySelector('select[name=model]').value;
     var year = form_upload.querySelector('select[name=year]').value;
     var motor_type = form_upload.querySelector('select[name=motor_type]').value;
@@ -46,7 +45,6 @@ function upload() {
     request.open("POST", "functions/upload.php");
 
     formData.append("technical_inspection", technical_inspection);
-    formData.append("brand", brand);
     formData.append("model", model);
     formData.append("year", year);
     formData.append("motor_type", motor_type);
@@ -86,7 +84,7 @@ function upload() {
         
         if (request.response == 'okay') {
 
-            location.reload();
+            window.location.reload(true);
             return;
 
         } else {
@@ -101,6 +99,78 @@ function upload() {
         
         if (request.response == 'reload') {
             error_span.innerText = 'Kļūda, atkārtoti ielādējiet lapu!'; return;
+        }
+
+        if (request.response == 'checkbox_false') {
+            error_span.innerText = 'Jūs neesat apstiprinājis, ka esat automašīnas īpašnieks!'; return;
+        }
+
+        if (request.response == 'no_registration_number') {
+            error_span.innerText = 'Jūs neievadījāt automašīnas reģistrācijas numuru!'; return;
+        }
+
+        if (request.response == 'no_vin_number') {
+            error_span.innerText = 'Jūs neievadījāt automašīnas vin kods!'; return;
+        }
+
+        if (request.response == 'incorrect_vin_number') {
+            error_span.innerText = 'VIN kods satur nederīgu formātu!'; return;
+        }
+
+        if (request.response == 'no_price') {
+            error_span.innerText = 'Jūs neievadījāt cenu'; return;
+        }
+
+        if (request.response == 'no_mileage') {
+            error_span.innerText = 'Jūs neievadījāt nobraukumu!'; return;
+        }
+
+        if (request.response == 'no_description') {
+            error_span.innerText = 'Jūs neievadījāt komentārs!'; return;
+        }
+
+        if (request.response == 'no_technical_inspection') {
+            error_span.innerText = 'Jūs neizvēlējies tehnisko apskati!'; return;
+        }
+
+        if (request.response == 'no_model') {
+            error_span.innerText = 'Jūs neizvēlējies modeli!'; return;
+        }
+
+        if (request.response == 'no_year') {
+            error_span.innerText = 'Jūs neizvēlējies kurā gadā ir jūsu automašīna!'; return;
+        }
+
+        if (request.response == 'no_motor_type') {
+            error_span.innerText = 'Jūs neizvēlējies motora veidu!'; return;
+        }
+
+        if (request.response == 'no_transmission') {
+            error_span.innerText = 'Jūs neizvēlējies ātrumkārba veidu!'; return;
+        }
+
+        if (request.response == 'no_body') {
+            error_span.innerText = 'Jūs neizvēlējies automašīnas virsbūve!'; return;
+        }
+
+        if (request.response == 'no_color') {
+            error_span.innerText = 'Jūs neizvēlējies krāsu!'; return;
+        }
+
+        if (request.response == 'no_motor_power') {
+            error_span.innerText = 'Jūs neizvēlējies cik litru dzinējā!'; return;
+        }
+
+        if (request.response == 'no_location') {
+            error_span.innerText = 'Jūs neizvēlējies automašīnas atrašanās vietu!'; return;
+        }
+
+        if (request.response == 'no_upload_time') {
+            error_span.innerText = 'Jūs neizvēlējies izsludināšanas laiku!'; return;
+        }
+
+        if (request.response == 'no_image_main') {
+            error_span.innerText = 'Jūsu reklāmā ir jābūt vismaz vienam fotoattēlam!'; return;
         }
         
     }

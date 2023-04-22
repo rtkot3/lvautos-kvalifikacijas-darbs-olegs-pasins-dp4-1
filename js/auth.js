@@ -28,7 +28,7 @@ function login() {
         
         if (request.response == 'okay') {
 
-            location.reload();
+            window.location.reload(true);
             return;
 
         } else {

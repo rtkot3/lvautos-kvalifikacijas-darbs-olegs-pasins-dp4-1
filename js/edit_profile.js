@@ -30,7 +30,7 @@ function edit_profile() {
 
         if (request.response == 'okay') {
 
-            location.reload();
+            window.location.reload(true);
             return;
 
         } else {

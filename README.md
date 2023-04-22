@@ -19,6 +19,11 @@
 
 ## Pēdējās izmaiņas
 
+-- [ 22.04.2023 ] --
+
+- Tagad cilne "Iesniegt Sludinājumu" ir pilnībā funkcionāla;
+- Uzlabota datu bāzes shēma. Daži mainīgo nosaukumi ir mainīti, un kļūdas ir novērstas.
+
 -- [ 20.04.2023 ] --
 
 - Tagad ir iespēja nosūtīt pieprasījumu publicēt auto sludinājumu (Servera puse nav gatava);
