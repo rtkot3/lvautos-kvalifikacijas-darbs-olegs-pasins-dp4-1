@@ -1,0 +1,1 @@
+document.querySelector('.description span').innerHTML = document.querySelector('.description span').innerHTML.replaceAll('\n', '<br>');

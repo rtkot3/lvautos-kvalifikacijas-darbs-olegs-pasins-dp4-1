@@ -189,11 +189,11 @@ $image_add10 = $images[10];
 
 $mysql -> query(
     "INSERT INTO `ads` (`user_id`,`car_id`,`car_motor_type_id`,`car_transmission_id`,`car_body_id`,`car_color_id`,
-    `car_location_id`,`car_motor_power`,`car_technical_inspection`,`car_vin_number`,`car_mileage`,`car_description`,`car_registration_number`,
+    `car_location_id`,`car_motor_power`,`car_year`,`car_technical_inspection`,`car_vin_number`,`car_mileage`,`car_description`,`car_registration_number`,
     `car_image_main`,`car_image_1`,`car_image_2`,`car_image_3`,`car_image_4`,`car_image_5`,`car_image_6`,`car_image_7`,`car_image_8`,`car_image_9`,`car_image_10`,
     `car_price`,`ad_time_publication`,`ad_time_end`,`ad_upload_time`,`ad_views`,`ad_is_showing`) 
     VALUES('$user_id','$model','$motor_type','$transmission','$body','$color',
-    '$location','$motor_power','$technical_inspection','$vin_number','$mileage','$description','$registration_number',
+    '$location','$motor_power','$year','$technical_inspection','$vin_number','$mileage','$description','$registration_number',
     '$car_image_main','$image_add1','$image_add2','$image_add3','$image_add4','$image_add5','$image_add6','$image_add7','$image_add8','$image_add9','$image_add10',
     '$price',null,null,'$upload_time','0','0')"
 );

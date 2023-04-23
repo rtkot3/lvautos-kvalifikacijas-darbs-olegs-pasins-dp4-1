@@ -12,6 +12,20 @@ $show_upload = true;
 
 require 'layouts/header.php'; 
 require "functions/get_data.php";
+include ("functions/sql_connection.php");
+
+$active_ads = $mysql -> query(
+    "SELECT COUNT(*) as `active_ads` 
+    FROM `ads` WHERE `ad_is_showing` = 1;"
+);
+
+$active_ads = $active_ads -> fetch_assoc();
+
+if ($active_ads['active_ads'] == 1) {
+    $active_ads = "Šobrīd Aktīvs 1 Sludinājums";
+} else {
+    $active_ads = "Šobrīd Aktīvi " . $active_ads['active_ads'] . " Sludinājumi";
+}
 
 ?>
 
@@ -20,7 +34,7 @@ require "functions/get_data.php";
     <div class="container">
 
         <div class="blue-box">
-            <span class="active-ads">Šobrīd Aktīvi 100 Sludinājumi</span>
+            <span class="active-ads"><?php echo $active_ads; ?></span>
             <h1 class="site-header">Auto Pārdošanas Sludinājumi</h1>
             <span class="additional-info">Atrodi Savu Nākotnes Auto.</span>
         </div>

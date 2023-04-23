@@ -1,5 +1,139 @@
 <?php 
 
+if (!isset($_GET['id'])) {
+    header('Location: /ads');
+}
+
+if (empty($_GET['id'])) {
+    header('Location: /ads');
+}
+
+// -------------------------- //
+
+include ("functions/sql_connection.php");
+
+$id = $_GET['id'];
+
+$ad = $mysql -> query(
+    "SELECT * FROM `ads` WHERE `id` = '$id' AND `ad_is_showing` = 1"
+);
+
+$ad = $ad -> fetch_assoc();
+
+if ($ad == null) {
+    header('Location: /ads');
+}
+
+// -------------------------- //
+
+$temp = $ad['car_transmission_id'];
+
+$transmission = $mysql -> query(
+    "SELECT * FROM `cars_transmissions` WHERE `id` = '$temp'"
+);
+
+$transmission = $transmission -> fetch_assoc();
+
+// -------------------------- //
+
+$temp = $ad['car_motor_type_id'];
+
+$motor_type = $mysql -> query(
+    "SELECT * FROM `cars_motor_types` WHERE `id` = '$temp'"
+);
+
+$motor_type = $motor_type -> fetch_assoc();
+
+// -------------------------- //
+
+$temp = $ad['car_body_id'];
+
+$body = $mysql -> query(
+    "SELECT * FROM `cars_bodys` WHERE `id` = '$temp'"
+);
+
+$body = $body -> fetch_assoc();
+
+// -------------------------- //
+
+$temp = $ad['car_color_id'];
+
+$color = $mysql -> query(
+    "SELECT * FROM `cars_colors` WHERE `id` = '$temp'"
+);
+
+$color = $color -> fetch_assoc();
+
+// -------------------------- //
+
+$temp = $ad['car_location_id'];
+
+$location = $mysql -> query(
+    "SELECT * FROM `cars_locations` WHERE `id` = '$temp'"
+);
+
+$location = $location -> fetch_assoc();
+
+// -------------------------- //
+
+$temp = $ad['user_id'];
+
+$user = $mysql -> query(
+    "SELECT * FROM `users` WHERE `id` = '$temp'"
+);
+
+$user = $user -> fetch_assoc();
+
+// -------------------------- //
+
+$temp = $ad['car_id'];
+
+$model = $mysql -> query(
+    "SELECT * FROM `cars_models` WHERE `id` = '$temp'"
+);
+
+$model = $model -> fetch_assoc();
+
+// -------------------------- //
+
+$temp = $model['brand'];
+
+$brand = $mysql -> query(
+    "SELECT * FROM `cars_brands` WHERE `id` = '$temp'"
+);
+
+$brand = $brand -> fetch_assoc();
+
+// -------------------------- //
+
+if ($ad['car_technical_inspection'] == '0') {
+    $ad['car_technical_inspection'] = "Nav";
+} else {
+    $ad['car_technical_inspection'] = "Līdz " . $ad['car_technical_inspection'];
+}
+
+if ($ad['car_year'] == '0') {
+    $ad['car_year'] = "Ļoti vecs";
+}
+
+$ad_time_publication = date('d.m.Y', strtotime($ad['ad_time_publication']));
+
+$user_registration_date = date('d.m.Y', strtotime($user['registration_date']));
+
+if ($user['whatsapp_status'] == '1') {
+    $whatsapp = '<div class="profile-contact"> <a target=”_blank” href="https://wa.me/' . $user['phone'] . '"> <div class="contact-icon" style="background: #1DB18A;"> <img src="ico/whatsapp.svg" class="icon_24x24"> </div> <div class="contact-number" style="background: #199473;"> <span>+371' . substr($user['phone'],0,4) . 'xxxx</span> </div> </a> </div>';
+} else {
+    $whatsapp = null;
+}
+
+if ($user['profile_img'] == '') {
+    $user_profile_img = 'ico/default_profile_image.jpg';
+} else {
+    $user_profile_img = 'data:image/jpeg;base64,' . $user['profile_img'];
+}
+
+// -------------------------- //
+
 $title = 'Auto Pārdošanas Sludinājumi';
 $css = 'view';
 
@@ -10,7 +144,7 @@ $admin_active;
 
 $show_upload = true;
 
-require 'layouts/header.php'; 
+require 'layouts/header.php';
 
 ?>
 
@@ -22,23 +156,23 @@ require 'layouts/header.php';
 
             <section class="_1st-block">
 
-                <h1 class="car-logo">Bmw 3-series</h1>
+                <h1 class="car-logo"><?php echo $brand['brand'] . ' ' . $model['model'] ; ?></h1>
             
                 <div class="time-view-odometr">
 
                     <div class="time-view-odometr-box">
                         <img src="ico/time.svg" class="icon_20x20">
-                        <span style="margin: 0 15px;">15.03.2023</span>
+                        <span style="margin: 0 15px;"><?php echo $ad_time_publication; ?></span>
                     </div>
 
                     <div class="time-view-odometr-box">
                         <img src="ico/views.svg" class="icon_20x20">
-                        <span style="margin: 0 15px;">Skatījumu skaits: 2055</span>
+                        <span style="margin: 0 15px;">Skatījumu skaits: <?php echo $ad['ad_views']; ?></span>
                     </div>
 
                     <div class="time-view-odometr-box">
                         <img src="ico/odometr.svg" class="icon_20x20">
-                        <span style="margin-left: 15px;">20000 km</span>
+                        <span style="margin-left: 15px;"><?php echo $ad['car_mileage']; ?> km</span>
                     </div>
 
                 </div>
@@ -76,7 +210,7 @@ require 'layouts/header.php';
                         </div>
     
                         <div class="car-price">
-                            <span>500</span>
+                            <span><?php echo $ad['car_price']; ?></span>
                         </div>
 
                 </div>
@@ -86,32 +220,32 @@ require 'layouts/header.php';
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Marka:</span>
-                            <span class="car-info-light">Bmw</span>
+                            <span class="car-info-light"><?php echo $brand['brand']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Modelis:</span>
-                            <span class="car-info-light">3-series</span>
+                            <span class="car-info-light"><?php echo $model['model']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Gads:</span>
-                            <span class="car-info-light">2005</span>
+                            <span class="car-info-light"><?php echo $ad['car_year']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Dzinējs:</span>
-                            <span class="car-info-light">2.0 Dīzelis</span>
+                            <span class="car-info-light"><?php echo $ad['car_motor_power'] . ' ' . $motor_type['motor_type']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Ātrumkārba:</span>
-                            <span class="car-info-light">Automāts</span>
+                            <span class="car-info-light"><?php echo $transmission['transmission']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Automašīnas virsbūve:</span>
-                            <span class="car-info-light">Sedāns</span>
+                            <span class="car-info-light"><?php echo $body['body']; ?></span>
                         </div>
 
                     </div>
@@ -120,27 +254,27 @@ require 'layouts/header.php';
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Krāsa:</span>
-                            <span class="car-info-light">Zils</span>
+                            <span class="car-info-light"><?php echo $color['color']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Atrašanās vieta:</span>
-                            <span class="car-info-light">Rīga</span>
+                            <span class="car-info-light"><?php echo $location['location']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Tehniskā apskate:</span>
-                            <span class="car-info-light">Līdz 20.12.2023</span>
+                            <span class="car-info-light"><?php echo $ad['car_technical_inspection']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">VIN:</span>
-                            <span class="car-info-light">4Y1SL65848Z411439</span>
+                            <span class="car-info-light"><?php echo $ad['car_vin_number']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Reģistrācijas numurs:</span>
-                            <span class="car-info-light">JB3540</span>
+                            <span class="car-info-light"><?php echo $ad['car_registration_number']; ?></span>
                         </div>
 
                     </div>
@@ -150,7 +284,7 @@ require 'layouts/header.php';
                 <span class="comment">Komentārs:</span>
 
                 <div class="description">
-                    <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span>
+                    <span><?php echo $ad['car_description']; ?></span>
                 </div>
 
             </section>
@@ -161,45 +295,32 @@ require 'layouts/header.php';
 
             <div class="profile-section">
                 <div style="display: flex; justify-content: center;">
-                    <img class="profile-img" src="/ico/profile.jpg">
+                    <div class="profile-img" style="background-image: url(<?php echo $user_profile_img; ?>)"></div>
                 </div>
 
                 <div class="profile-info">
-                    <h3>Oļegs</h3>
-                    <span>Tiešsaistē kopš 15.03.2023</span>
+                    <h3><?php echo $user['name']; ?></h3>
+                    <span>Tiešsaistē kopš <?php echo $user_registration_date; ?></span>
                 </div>
 
                 <div class="profile-contact">
 
-                    <a href="#">
+                    <a href="tel:<?php echo $user['phone']; ?>">
 
                         <div class="contact-icon">
                             <img src="ico/phone-2.svg" class="icon_24x24">
                         </div>
     
                         <div class="contact-number">
-                            <span>+37127xxxxx</span>
+                            <span>+371<?php echo substr($user['phone'],0,4); ?>xxxx</span>
                         </div>
 
                     </a>
 
                 </div>
 
-                <div class="profile-contact">
+                <?php echo $whatsapp; ?>
 
-                    <a href="#">
-                    
-                        <div class="contact-icon" style="background: #1DB18A;">
-                            <img src="ico/whatsapp.svg" class="icon_24x24">
-                        </div>
-
-                        <div class="contact-number" style="background: #199473;">
-                            <span>+37127xxxxx</span>
-                        </div>
-
-                    </a>
-
-                </div>
             </div>
 
         </div>
@@ -208,6 +329,8 @@ require 'layouts/header.php';
     </div>
 
 </div>
+
+<script src="/js/view.js"></script>
 
 <?php 
 
