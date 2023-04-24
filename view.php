@@ -180,19 +180,35 @@ require 'layouts/header.php';
                 <div class="car-photos">
 
                     <div class="car-photo-logo">
-                        <img src="ico/example-photo-2.png">
+                        <img src="data:image/jpeg;base64,<?php echo $ad['car_image_main'] ?>">
                     </div>
 
                     <div class="car-add-photos">
 
                         <div style="width: auto; display: flex; margin-left: 15px;">
-                            <div class="car-add-img" style="background-image: url('ico/example-photo-2.png');"></div>
-                            <div class="car-add-img" style="background-image: url('ico/example-photo-2.png');"></div>
-                            <div class="car-add-img" style="background-image: url('ico/example-photo-2.png');"></div>
-                            <div class="car-add-img" style="background-image: url('ico/example-photo-2.png');"></div>
-                            <div class="car-add-img" style="background-image: url('ico/example-photo-2.png');"></div>
-                            <div class="car-add-img" style="background-image: url('ico/example-photo-2.png');"></div>
-                            <div class="car-add-img" style="background-image: url('ico/example-photo-2.png');"></div>
+
+                            <div onclick="showImg(this.querySelector('input'))" class="car-add-img" style="background-image: url('data:image/jpeg;base64,<?php echo $ad['car_image_main'] ?>');">
+                                <input value="data:image/jpeg;base64,<?php echo $ad['car_image_main'] ?>">
+                            </div>
+
+                            <?php
+
+                            for ($i = 1; $i <= 10; $i++) {
+                                $name = "car_image_" . $i;
+
+                                if ($ad[$name] == null) {
+                                    continue;
+                                }
+
+                                echo '<div onclick="showImg(this.querySelector(\'input\'))" 
+                                class="car-add-img" style="background-image: url(\'data:image/jpeg;base64,' . $ad[$name] . '\');"> 
+                                <input value="data:image/jpeg;base64,' . $ad[$name] . '"> </div>';
+
+                            }
+                            
+                            
+                            ?>
+
                         </div>
 
                     </div>

@@ -41,6 +41,7 @@
 }
 
 .profile-contact a {
+    cursor: default;
     margin: 15px;
     display: flex;
 }
@@ -103,7 +104,6 @@
 }
 
 .car-photo-logo img {
-    cursor: pointer;
     border-top: 1px solid #E1E1E1;
     border-bottom: 1px solid #E1E1E1;
     width: 100%;
@@ -119,13 +119,16 @@
 
 .car-add-img {
     margin-right: 15px;
-    cursor: pointer;
     border: 1px solid #E1E1E1;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
     width: 150px;
     height: 100px;
+}
+
+.car-add-img input {
+    display: none;
 }
 
 ._2nd-block {

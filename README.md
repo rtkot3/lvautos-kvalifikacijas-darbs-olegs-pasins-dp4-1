@@ -19,6 +19,10 @@
 
 ## Pēdējās izmaiņas
 
+-- [ 24.04.2023 ] --
+
+- Pabeigta cilne kurā var apskatīt sludinājumiem pievienoto auto.
+
 -- [ 23.04.2023 ] --
 
 - Cilne, kurā var [apskatīt sludinājumiem pievienoto auto](https://imgur.com/a/qW4YLhP), ir 90% gatava;
