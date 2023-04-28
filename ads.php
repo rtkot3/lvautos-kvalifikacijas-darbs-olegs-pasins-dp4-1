@@ -11,6 +11,8 @@ $admin_active;
 $show_upload = true;
 
 require 'layouts/header.php'; 
+require "functions/get_data.php";
+include ("functions/sql_connection.php");
 
 ?>
 
@@ -25,11 +27,9 @@ require 'layouts/header.php';
             </div>
 
             <div class="input-select" style="margin: 15px;">
-                <select>
+                <select id="brands" onchange="updateModels(this);">
                     <option value="" disabled selected>- Brand -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
+                    <?php get_data(); ?>
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -37,11 +37,8 @@ require 'layouts/header.php';
             </div>
 
             <div class="input-select" style="margin: 15px;">
-                <select>
+                <select id="models" disabled>
                     <option value="" disabled selected>- Modelis -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -55,9 +52,7 @@ require 'layouts/header.php';
             <div class="input-select" style="margin: 15px; margin-bottom: 0;">
                 <select>
                     <option value="" disabled selected>- Dzinēja tips -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
+                    <?php get_data("motor_type"); ?>
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -68,9 +63,15 @@ require 'layouts/header.php';
 
                 <div class="input-select" style="margin: 15px;">
                     <select>
-                        <option value="bmw">0.0</option>
-                        <option value="audi">Audi</option>
-                        <option value="mercedes">Mercedes</option>
+
+                    <?php
+
+                    for ($i = 1.1; $i <= 6.5; $i = $i + 0.1) {
+                        echo "<option value=\"" . $i . "\">" . $i . "</option>";
+                    }    
+                                            
+                    ?>
+
                     </select>
                     <div class="input-section-icon">
                         <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -79,9 +80,15 @@ require 'layouts/header.php';
 
                 <div class="input-select" style="margin: 15px; margin-left: 0;">
                     <select>
-                        <option value="bmw">2.0</option>
-                        <option value="audi">Audi</option>
-                        <option value="mercedes">Mercedes</option>
+
+                    <?php
+
+                    for ($i = 1.1; $i <= 6.5; $i = $i + 0.1) {
+                        echo "<option value=\"" . $i . "\">" . $i . "</option>";
+                    }    
+                                            
+                    ?>
+
                     </select>
                     <div class="input-section-icon">
                         <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -99,8 +106,16 @@ require 'layouts/header.php';
                 <div class="input-select" style="margin: 15px;">
                     <select>
                         <option value="" disabled selected>No</option>
-                        <option value="audi">Audi</option>
-                        <option value="mercedes">Mercedes</option>
+                        <option value="0">Ļoti vecs</option>
+
+                        <?php
+
+                            for ($i = 1980; $i <= date("Y"); $i++) {
+                                echo "<option value=\"" . $i . "\">" . $i . "</option>";
+                            }    
+                                                    
+                        ?>
+
                     </select>
                     <div class="input-section-icon">
                         <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -110,8 +125,15 @@ require 'layouts/header.php';
                 <div class="input-select" style="margin: 15px; margin-left: 0;">
                     <select>
                         <option value="" disabled selected>Līdz</option>
-                        <option value="audi">Audi</option>
-                        <option value="mercedes">Mercedes</option>
+                        
+                        <?php
+
+                            for ($i = date("Y"); $i >= 1980; $i--) {
+                                echo "<option value=\"" . $i . "\">" . $i . "</option>";
+                            }    
+                                                    
+                        ?>
+
                     </select>
                     <div class="input-section-icon">
                         <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -127,9 +149,7 @@ require 'layouts/header.php';
             <div class="input-select" style="margin: 15px;">
                 <select>
                     <option value="" disabled selected>- Ātrumkārba -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
+                    <?php get_data("transmission"); ?>
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -139,9 +159,7 @@ require 'layouts/header.php';
             <div class="input-select" style="margin: 15px;">
                 <select>
                     <option value="" disabled selected>- Automašīnas virsbūve -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
+                    <?php get_data("body"); ?>
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -151,9 +169,7 @@ require 'layouts/header.php';
             <div class="input-select" style="margin: 15px;">
                 <select>
                     <option value="" disabled selected>- Krāsa -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
+                    <?php get_data("color"); ?>
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -163,9 +179,17 @@ require 'layouts/header.php';
             <div class="input-select" style="margin: 15px;">
                 <select>
                     <option value="" disabled selected>- Tehniskā apskate -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
+                    <option value="0">Nav</option>
+
+                    <?php
+
+                        for ($i = 0; $i < 12; $i++) {
+                            $a = date('m.Y', strtotime($date. ' + ' . $i . ' month'));
+                            echo "<option value=\"" . $a . "\">" . $a . "</option>";
+                        }    
+
+                    ?>
+
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -179,9 +203,7 @@ require 'layouts/header.php';
             <div class="input-select" style="margin: 15px;">
                 <select>
                     <option value="" disabled selected>- Rajons -</option>
-                    <option value="bmw">Bmw</option>
-                    <option value="audi">Audi</option>
-                    <option value="mercedes">Mercedes</option>
+                    <?php get_data("location"); ?>
                 </select>
                 <div class="input-section-icon">
                     <img src="ico/location-black.svg" class="icon_20x20">
@@ -201,9 +223,9 @@ require 'layouts/header.php';
                 <div class="input-select" style="max-width: 205px; height: auto;">
                     <select style="padding: 10px;">
                         <option value="" disabled selected>Filtrēšana pēc</option>
-                        <option value="bmw">Bmw</option>
-                        <option value="audi">Audi</option>
-                        <option value="mercedes">Mercedes</option>
+                        <option value="1">Cena</option>
+                        <option value="2">Jauni</option>
+                        <option value="3">Vecas</option>
                     </select>
                     <div class="input-section-icon" style="background: white; border-left: 1px solid #E1E1E1;;">
                         <img src="ico/arrow-down.svg" class="icon_20x20">

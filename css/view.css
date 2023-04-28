@@ -118,6 +118,7 @@
 }
 
 .car-add-img {
+    cursor: pointer;
     margin-right: 15px;
     border: 1px solid #E1E1E1;
     background-position: 50% 50%;

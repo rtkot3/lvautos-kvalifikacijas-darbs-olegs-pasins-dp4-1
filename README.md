@@ -15,9 +15,15 @@
 
 ## Demo
 
-- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 20.04.2023)
+- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 28.04.2023)
 
 ## Pēdējās izmaiņas
+
+-- [ 28.04.2023 ] --
+
+- Tagad darbojas informācija par ["Pēdējie Sludinājumi"](https://imgur.com/a/A9J61Sd);
+- Sācis darbu ar cilni "SLUDINĀJUMI"
+- Pieejama demonstrācijas vietne
 
 -- [ 24.04.2023 ] --
 

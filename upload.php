@@ -136,7 +136,7 @@ $date = date("Y-m-d");
                                                         
                             ?>
 
-                            <option value="0">Cits</option>
+                            <option value="0">Ļoti vecs</option>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -172,7 +172,7 @@ $date = date("Y-m-d");
 
                              <?php
 
-                                for ($i = 1; $i <= 6.5; $i = $i + 0.1) {
+                                for ($i = 1.1; $i <= 6.5; $i = $i + 0.1) {
                                     echo "<option value=\"" . $i . "\">" . $i . "</option>";
                                 }    
                                                         
@@ -392,10 +392,10 @@ $date = date("Y-m-d");
                 <div class="input-select">
                     <select name="upload_time">
                         <option value="" disabled selected>- Izvēlieties Laiku -</option>
-                        <option value="7">1 Nedēļa</option>
-                        <option value="14">2 Nedēļas</option>
-                        <option value="21">3 Nedēļas</option>
-                        <option value="28">4 Nedēļas</option>
+                        <option value="1">1 Nedēļa</option>
+                        <option value="2">2 Nedēļas</option>
+                        <option value="3">3 Nedēļas</option>
+                        <option value="4">4 Nedēļas</option>
                     </select>
                     <div class="input-section-icon">
                         <img src="ico/calendar.svg" class="icon_20x20">

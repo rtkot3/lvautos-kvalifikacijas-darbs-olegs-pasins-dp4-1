@@ -14,9 +14,11 @@ require 'layouts/header.php';
 require "functions/get_data.php";
 include ("functions/sql_connection.php");
 
+$date = date('Y-m-d');
+
 $active_ads = $mysql -> query(
     "SELECT COUNT(*) as `active_ads` 
-    FROM `ads` WHERE `ad_is_showing` = 1;"
+    FROM `ads` WHERE `ad_is_showing` = 1 AND ad_time_end > '$date';"
 );
 
 $active_ads = $active_ads -> fetch_assoc();
@@ -182,133 +184,112 @@ if ($active_ads['active_ads'] == 1) {
 
     <div class="lasts-ads">
 
-        <div class="last-ad">
+        <?php
 
-            <a href="#"><div class="last-ad-img" style="background-image: url('ico/example-photo.png');"></div></a>
+        $ad = $mysql -> query(
+            "SELECT * FROM `ads` WHERE `ad_is_showing` = 1 AND ad_time_end > '$date' LIMIT 4"
+        );
 
-            <div class="car-info">
+        $temp_value = false;
+        $temp_value2 = 0;
+        $last_ad = '';
 
-                <div class="car-info-box">
-                    <a href="#" style="margin-right: 5px;">Bmw</a>
-                    <img src="ico/arrow-right.svg" class="icon_20x20" style="margin-right: 5px;">
-                    <a href="#">3-series</a>
+        while ($row = $ad -> fetch_assoc()) {
+
+            $temp_value2++;
+
+            $style = '';
+
+            if ($temp_value) {
+                $style = 'style="margin-left: 30px;"';
+            } 
+            
+            $temp_value = true;
+
+            if ($temp_value2 == 4) {
+                $last_ad = 'mega-last-ad';
+            }
+
+            // -------------------------- //
+
+            $location_id = $row['car_location_id'];
+
+            $location = $mysql -> query(
+                "SELECT * FROM `cars_locations` WHERE `id` = '$location_id'"
+            );
+
+            $location = $location -> fetch_assoc();
+
+            // -------------------------- //
+
+            $model_id = $row['car_id'];
+
+            $model = $mysql -> query(
+                "SELECT * FROM `cars_models` WHERE `id` = '$model_id'"
+            );
+
+            $model = $model -> fetch_assoc();
+
+            // -------------------------- //
+
+            $brand_id = $model['brand'];
+
+            $brand = $mysql -> query(
+                "SELECT * FROM `cars_brands` WHERE `id` = '$brand_id'"
+            );
+
+            $brand = $brand -> fetch_assoc();
+
+            // -------------------------- //
+
+            $car_motor_id = $row['car_motor_type_id'];
+
+            $car_motor = $mysql -> query(
+                "SELECT * FROM `cars_motor_types` WHERE `id` = '$car_motor_id'"
+            );
+
+            $car_motor = $car_motor -> fetch_assoc();
+
+            // -------------------------- //
+
+            echo '
+
+            <div class="last-ad ' . $last_ad . '" ' . $style . '">
+
+                <a href="view?id=' . $row['id'] . '"><div class="last-ad-img" style="background-image: url(\'data:image/jpeg;base64,' . $row['car_image_main'] . '\');"></div></a>
+
+                <div class="car-info">
+
+                    <div class="car-info-box">
+                        <a href="#" style="margin-right: 5px;">' . $brand['brand'] . '</a>
+                        <img src="ico/arrow-right.svg" class="icon_20x20" style="margin-right: 5px;">
+                        <a href="#">' . $model['model'] . '</a>
+                    </div>
+
+                    <div class="car-info-box">
+                        <img src="ico/car.svg" class="icon_20x20" style="margin-right: 15px;">
+                        <span style="margin-right: 15px;">' . $row['car_year'] . '</span>
+                        <img src="ico/power.svg" class="icon_20x20" style="margin-right: 15px;">
+                        <span>' . $row['car_motor_power'] . ' ' . $car_motor['motor_type'] . '</span>
+                    </div>
+
+                    <div class="car-info-box">
+                        <img src="ico/location.svg" class="icon_20x20" style="margin-right: 15px;">
+                        <span style="color: #B1B1B1;">' . $location['location'] . '</span>
+                    </div>
+
+                    <div class="car-price">
+                        <img src="ico/euro.svg" class="icon_20x20" style="margin-right: 15px;">
+                        <span>' . $row['car_price'] . '</span>
+                    </div>
                 </div>
 
-                <div class="car-info-box">
-                    <img src="ico/car.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="margin-right: 15px;">2005</span>
-                    <img src="ico/power.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>2.5 Dīzels</span>
-                </div>
+            </div>';
 
-                <div class="car-info-box">
-                    <img src="ico/location.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="color: #B1B1B1;">Rīga</span>
-                </div>
+        }
 
-                <div class="car-price">
-                    <img src="ico/euro.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>3500</span>
-                </div>
-            </div>
 
-        </div>
-
-        <div class="last-ad" style="margin-left: 30px;">
-
-            <a href="#"><div class="last-ad-img" style="background-image: url('ico/example-photo.png');"></div></a>
-
-            <div class="car-info">
-
-                <div class="car-info-box">
-                    <a href="#" style="margin-right: 5px;">Bmw</a>
-                    <img src="ico/arrow-right.svg" class="icon_20x20" style="margin-right: 5px;">
-                    <a href="#">3-series</a>
-                </div>
-
-                <div class="car-info-box">
-                    <img src="ico/car.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="margin-right: 15px;">2005</span>
-                    <img src="ico/power.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>2.5 Dīzels</span>
-                </div>
-
-                <div class="car-info-box">
-                    <img src="ico/location.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="color: #B1B1B1;">Rīga</span>
-                </div>
-
-                <div class="car-price">
-                    <img src="ico/euro.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>3500</span>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="last-ad" style="margin-left: 30px;">
-
-            <a href="#"><div class="last-ad-img" style="background-image: url('ico/example-photo.png');"></div></a>
-
-            <div class="car-info">
-
-                <div class="car-info-box">
-                    <a href="#" style="margin-right: 5px;">Bmw</a>
-                    <img src="ico/arrow-right.svg" class="icon_20x20" style="margin-right: 5px;">
-                    <a href="#">3-series</a>
-                </div>
-
-                <div class="car-info-box">
-                    <img src="ico/car.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="margin-right: 15px;">2005</span>
-                    <img src="ico/power.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>2.5 Dīzels</span>
-                </div>
-
-                <div class="car-info-box">
-                    <img src="ico/location.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="color: #B1B1B1;">Rīga</span>
-                </div>
-
-                <div class="car-price">
-                    <img src="ico/euro.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>3500</span>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="last-ad mega-last-ad" style="margin-left: 30px;">
-
-            <a href="#"><div class="last-ad-img" style="background-image: url('ico/example-photo.png');"></div></a>
-
-            <div class="car-info">
-
-                <div class="car-info-box">
-                    <a href="#" style="margin-right: 5px;">Bmw</a>
-                    <img src="ico/arrow-right.svg" class="icon_20x20" style="margin-right: 5px;">
-                    <a href="#">3-series</a>
-                </div>
-
-                <div class="car-info-box">
-                    <img src="ico/car.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="margin-right: 15px;">2005</span>
-                    <img src="ico/power.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>2.5 Dīzels</span>
-                </div>
-
-                <div class="car-info-box">
-                    <img src="ico/location.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span style="color: #B1B1B1;">Rīga</span>
-                </div>
-
-                <div class="car-price">
-                    <img src="ico/euro.svg" class="icon_20x20" style="margin-right: 15px;">
-                    <span>3500</span>
-                </div>
-            </div>
-
-        </div>
+        ?>
 
     </div>
 
