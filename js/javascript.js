@@ -74,4 +74,23 @@ function fileUploaded(file, element) {
     element.querySelector('.upload-img').style.display = 'none';
 }
 
-var image = new Image(); image.src = 'ico/loading.gif';
+var image = new Image(); 
+image.src = 'ico/loading.gif';
+
+function findCar() {
+    var brands = document.querySelector('#brands').value;
+    var models = document.querySelector('#models').value;
+    var transmissions = document.querySelector('#transmissions').value;
+    var motor_types = document.querySelector('#motor_types').value;
+    var locations = document.querySelector('#locations').value;
+
+    var url = window.location.origin + 
+    '/ads?brands=' + brands + 
+    '&models=' + models +
+    '&transmissions=' + transmissions +
+    '&motor_types=' + motor_types +
+    '&locations=' + locations;
+
+    window.location.href = url;
+    return;
+}

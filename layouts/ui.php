@@ -254,6 +254,104 @@ if (isset($_SESSION['login'])) {
                 <button class="ui-btn active-ui-btn" style="margin-left: 15px">Manas Mašīnas</button>
             </div>
 
+            <div class="ui-cars-lists">
+
+                <?php
+
+                if (isset($_SESSION['login'])) {
+
+                    $email = $_SESSION['login']['email'];
+
+                    $user = $mysql -> query(
+                        "SELECT * FROM `users` 
+                        WHERE `email` = '$email'"
+                    );
+
+                    $user = $user -> fetch_assoc();
+
+                    $user_id = $user['id'];
+
+                    $date = date('Y-m-d');
+
+                    $ad_in_ui = $mysql -> query(
+                        "SELECT * FROM `ads` WHERE `user_id` = '$user_id'"
+                    );
+
+                    while ($row = $ad_in_ui -> fetch_assoc()) {
+
+                        $model_id = $row['car_id'];
+
+                        $model = $mysql -> query(
+                            "SELECT * FROM `cars_models` WHERE `id` = '$model_id'"
+                        );
+
+                        $model = $model -> fetch_assoc();
+
+                        // -------------------------- //
+
+                        $brand_id = $model['brand'];
+
+                        $brand = $mysql -> query(
+                            "SELECT * FROM `cars_brands` WHERE `id` = '$brand_id'"
+                        );
+
+                        $brand = $brand -> fetch_assoc();
+
+                        // -------------------------- //
+
+                        if ($row['ad_time_end'] != '') {
+                            if ($row['ad_time_end'] < $date) {
+                                continue;   
+                            }
+                        }
+
+                        $ad_time_end_style = '';
+
+                        if ($row['ad_time_end'] == '') {
+                            $ad_time_end = 'Sludinājumu šobrīd izskata administrators ...';
+                            $ad_time_end_style = 'style="color: #B1B1B1;"';
+                        } else {
+                            $ad_time_end = date('d.m.Y', strtotime($row['ad_time_end']));
+                        }
+
+
+                        echo '                
+                        <div class="car-option">
+                            <div class="ui-car-img" style="background-image: url(\'data:image/jpeg;base64,' . $row['car_image_main'] . '\');"></div>
+
+                            <div class="ui-car-info-boxs">
+                                <div class="ui-car-info-box">
+                                <img src="ico/car.svg" class="icon_20x20" style="margin-right: 15px;">
+                                    <span>' . $brand['brand'] . ' ' . $model['model'] . '</a>
+                                </div>
+
+                                <div class="ui-car-info-box">
+                                    <img src="ico/euro.svg" class="icon_20x20" style="margin-right: 15px;">
+                                    <span>' . $row['car_price'] . '</a>
+                                </div>
+
+                                <div class="ui-car-info-box">
+                                    <img src="ico/timer.svg" class="icon_20x20" style="margin-right: 15px;">
+                                    <span ' . $ad_time_end_style . '>' . $ad_time_end . '</a>
+                                </div>
+                            </div>
+
+                            <div class="ui-car-info-boxs" style="margin-left: auto">
+                                <a href="view?id=' . $row['id'] . '" class="ui-show-car">SKATIES</a>
+                                <a href="#" class="ui-show-car ui-show-car-delete" style="margin-top: 5px">DZĒST</a>
+                            </div>
+
+                        </div>';
+
+                    }
+
+                }
+            
+            
+                ?>
+
+            </div>
+
         </div>
 
     </div>

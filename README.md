@@ -15,15 +15,22 @@
 
 ## Demo
 
-- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 28.04.2023)
+- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 30.04.2023)
 
 ## Pēdējās izmaiņas
+
+-- [ 30.04.2023 ] --
+
+- Opcija ["Manas Mašīnas"](https://imgur.com/a/o2XbCoD) ir darbojas;
+- Izlabotas daudzas kļūdas;
+- Konfigurēta vietnes drošība;
+- Pieejama demonstrācijas vietne.
 
 -- [ 28.04.2023 ] --
 
 - Tagad darbojas informācija par ["Pēdējie Sludinājumi"](https://imgur.com/a/A9J61Sd);
-- Sācis darbu ar cilni "SLUDINĀJUMI"
-- Pieejama demonstrācijas vietne
+- Sācis darbu ar cilni "SLUDINĀJUMI";
+- Pieejama demonstrācijas vietne.
 
 -- [ 24.04.2023 ] --
 

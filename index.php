@@ -100,7 +100,7 @@ if ($active_ads['active_ads'] == 1) {
                         </div>
                     </div>
 
-                    <button class="find-auto">ATRAST</button>
+                    <button class="find-auto" onclick="findCar()">ATRAST</button>
 
                 </div>
 
@@ -287,7 +287,6 @@ if ($active_ads['active_ads'] == 1) {
             </div>';
 
         }
-
 
         ?>
 

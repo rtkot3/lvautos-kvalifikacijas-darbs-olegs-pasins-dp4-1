@@ -1,4 +1,4 @@
-<?php 
+<?php session_start(); error_reporting(0);
 
 if (!isset($_GET['id'])) {
     header('Location: /ads');
@@ -15,13 +15,23 @@ include ("functions/sql_connection.php");
 $id = $_GET['id'];
 
 $ad = $mysql -> query(
-    "SELECT * FROM `ads` WHERE `id` = '$id' AND `ad_is_showing` = 1"
+    "SELECT * FROM `ads` WHERE `id` = '$id'"
 );
 
 $ad = $ad -> fetch_assoc();
 
-if ($ad == null) {
-    header('Location: /ads');
+$user_id = $ad['user_id'];
+
+$user_own = $mysql -> query(
+    "SELECT * FROM `users` WHERE `id` = '$user_id'"
+);
+
+$user_own = $user_own -> fetch_assoc();
+
+if ($ad['ad_is_showing'] == '0') {
+    if($user_own['email'] != $_SESSION['login']['email']) {
+        header('Location: /ads');
+    }
 }
 
 // -------------------------- //
@@ -78,11 +88,11 @@ $location = $location -> fetch_assoc();
 
 $temp = $ad['user_id'];
 
-$user = $mysql -> query(
+$user_seller = $mysql -> query(
     "SELECT * FROM `users` WHERE `id` = '$temp'"
 );
 
-$user = $user -> fetch_assoc();
+$user_seller = $user_seller -> fetch_assoc();
 
 // -------------------------- //
 
@@ -116,20 +126,24 @@ if ($ad['car_year'] == '0') {
     $ad['car_year'] = "Ļoti vecs";
 }
 
-$ad_time_publication = date('d.m.Y', strtotime($ad['ad_time_publication']));
+if ($ad['ad_time_publication'] == '') {
+    $ad_time_publication = 'Sludinājumu šobrīd izskata administrators ...';
+} else {
+    $ad_time_publication = date('d.m.Y', strtotime($ad['ad_time_publication']));
+}
 
-$user_registration_date = date('d.m.Y', strtotime($user['registration_date']));
+$user_registration_date = date('d.m.Y', strtotime($user_seller['registration_date']));
 
-if ($user['whatsapp_status'] == '1') {
-    $whatsapp = '<div class="profile-contact"> <a target=”_blank” href="https://wa.me/' . $user['phone'] . '"> <div class="contact-icon" style="background: #1DB18A;"> <img src="ico/whatsapp.svg" class="icon_24x24"> </div> <div class="contact-number" style="background: #199473;"> <span>+371' . substr($user['phone'],0,4) . 'xxxx</span> </div> </a> </div>';
+if ($user_seller['whatsapp_status'] == '1') {
+    $whatsapp = '<div class="profile-contact"> <a target=”_blank” href="https://wa.me/' . $user_seller['phone'] . '"> <div class="contact-icon" style="background: #1DB18A;"> <img src="ico/whatsapp.svg" class="icon_24x24"> </div> <div class="contact-number" style="background: #199473;"> <span>+371' . substr($user_seller['phone'],0,4) . 'xxxx</span> </div> </a> </div>';
 } else {
     $whatsapp = null;
 }
 
-if ($user['profile_img'] == '') {
+if ($user_seller['profile_img'] == '') {
     $user_profile_img = 'ico/default_profile_image.jpg';
 } else {
-    $user_profile_img = 'data:image/jpeg;base64,' . $user['profile_img'];
+    $user_profile_img = 'data:image/jpeg;base64,' . $user_seller['profile_img'];
 }
 
 // -------------------------- //
@@ -162,7 +176,7 @@ require 'layouts/header.php';
 
                     <div class="time-view-odometr-box">
                         <img src="ico/time.svg" class="icon_20x20">
-                        <span style="margin: 0 15px;"><?php echo $ad_time_publication; ?></span>
+                        <span style="margin: 0 15px;" class="ad_time_publication"><?php echo $ad_time_publication; ?></span>
                     </div>
 
                     <div class="time-view-odometr-box">
@@ -315,20 +329,20 @@ require 'layouts/header.php';
                 </div>
 
                 <div class="profile-info">
-                    <h3><?php echo $user['name']; ?></h3>
+                    <h3><?php echo $user_seller['name']; ?></h3>
                     <span>Tiešsaistē kopš <?php echo $user_registration_date; ?></span>
                 </div>
 
                 <div class="profile-contact">
 
-                    <a href="tel:<?php echo $user['phone']; ?>">
+                    <a href="tel:<?php echo $user_seller['phone']; ?>">
 
                         <div class="contact-icon">
                             <img src="ico/phone-2.svg" class="icon_24x24">
                         </div>
     
                         <div class="contact-number">
-                            <span>+371<?php echo substr($user['phone'],0,4); ?>xxxx</span>
+                            <span>+371<?php echo substr($user_seller['phone'],0,4); ?>xxxx</span>
                         </div>
 
                     </a>
