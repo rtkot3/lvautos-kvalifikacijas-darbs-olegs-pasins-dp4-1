@@ -19,6 +19,11 @@
 
 ## Pēdējās izmaiņas
 
+-- [ 04.05.2023 ] --
+
+- Cilne ["SLUDINĀJUMI"](https://imgur.com/a/fhxDac8) ir pilnībā funkcionāla;
+- Izlabotas daudzas kļūdas.
+
 -- [ 30.04.2023 ] --
 
 - Opcija ["Manas Mašīnas"](https://imgur.com/a/o2XbCoD) ir darbojas;

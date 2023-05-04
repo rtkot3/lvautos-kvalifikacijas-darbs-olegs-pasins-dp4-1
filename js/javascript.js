@@ -50,6 +50,14 @@ function menu() {
 
 function updateModels(value) {
 
+    let model = document.querySelector('#models');
+
+    if (value.selectedOptions[0].value == '') {
+        model.disabled = true;
+        model.innerHTML = '<option value="" selected>- Modelis -</option>';
+        return;
+    }
+
     let request = new XMLHttpRequest();
 
     request.open("GET", "functions/get_data?model=" + value.selectedOptions[0].value);
@@ -57,11 +65,9 @@ function updateModels(value) {
     request.send();
 
     request.onload = () => {
-
-        let model = document.querySelector('#models');
         
         model.disabled = false;
-        model.innerHTML = '<option value="" disabled selected>- Modelis -</option>' + request.response;
+        model.innerHTML = '<option value="" selected>- Modelis -</option>' + request.response;
         
     }
 

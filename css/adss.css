@@ -3,9 +3,12 @@
     display: flex;
 }
 
-.search-box {
-    width: 100%;
+.search-container1234 {
+    width: 100%; 
     max-width: 330px;
+}
+
+.search-box {
     border: 1px solid #E1E1E1;
     box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
     border-radius: 0px 0px 3px 3px;
@@ -57,7 +60,6 @@
 }
 
 .car-image {
-    cursor: pointer;
     border-right: 1px solid #E1E1E1;
     width: 291px;
     min-width: 291px;
@@ -175,7 +177,7 @@
         margin-top: 30px;
     }
 
-    .search-box {
+    .search-container1234 {
         max-width: 100%;
     }
 

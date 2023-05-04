@@ -49,7 +49,7 @@ if ($active_ads['active_ads'] == 1) {
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
                         <select id="brands" onchange="updateModels(this);">
-                            <option value="" disabled selected>- Brands -</option>
+                            <option value="" selected>- Brands -</option>
                             <?php get_data(); ?>
                         </select>
                         <div class="input-section-icon">
@@ -59,7 +59,7 @@ if ($active_ads['active_ads'] == 1) {
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
                         <select id="models" disabled>
-                            <option value="" disabled selected>- Modelis -</option>
+                            <option value="" selected>- Modelis -</option>
                         </select>
                         <div class="input-section-icon">
                             <img src="ico/arrow-down.svg" class="icon_20x20">
@@ -68,7 +68,7 @@ if ($active_ads['active_ads'] == 1) {
 
                     <div class="input-select" style="width: 100%;">
                         <select id="transmissions">
-                            <option value="" disabled selected>- Ātrumkarba -</option>
+                            <option value="" selected>- Ātrumkarba -</option>
                             <?php get_data("transmission"); ?>
                         </select>
                         <div class="input-section-icon">
@@ -82,7 +82,7 @@ if ($active_ads['active_ads'] == 1) {
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
                         <select id="motor_types">
-                            <option value="" disabled selected>- Dzinēja Tips -</option>
+                            <option value="" selected>- Dzinēja Tips -</option>
                             <?php get_data("motor_type"); ?>
                         </select>
                         <div class="input-section-icon">
@@ -92,7 +92,7 @@ if ($active_ads['active_ads'] == 1) {
 
                     <div class="input-select" style="margin-right: 15px; width: 100%;">
                         <select id="locations">
-                            <option value="" disabled selected>- Rajons -</option>
+                            <option value="" selected>- Rajons -</option>
                             <?php get_data("location"); ?>
                         </select>
                         <div class="input-section-icon">
@@ -118,21 +118,21 @@ if ($active_ads['active_ads'] == 1) {
 
         <div class="section-box-fast-cars" id="section-box-fast-cars-first" style="display: flex">
             <div class="fast-box-find">
-                <a href="#">
+                <a href="ads?brands=1">
                     <img src="ico/Bmw.png">
                     <span>Bmw</span>
                 </a>
             </div>
 
             <div class="fast-box-find" style="margin-left: 30px;">
-                <a href="#">
+                <a href="ads?brands=2">
                     <img src="ico/Audi.png">
                     <span>Audi</span>
                 </a>
             </div>
 
             <div class="fast-box-find" style="margin-left: 30px;">
-                <a href="#">
+                <a href="ads?brands=3">
                     <img src="ico/Mercedes.png">
                     <span>Mercedes</span>
                 </a>
@@ -141,21 +141,21 @@ if ($active_ads['active_ads'] == 1) {
 
         <div class="section-box-fast-cars" style="display: flex">
             <div class="fast-box-find" style="margin-left: 30px;">
-                <a href="#">
+                <a href="ads?brands=4">
                     <img src="ico/Volkswagen.png">
                     <span>Volkswagen</span>
                 </a>
             </div>
 
             <div class="fast-box-find" style="margin-left: 30px;">
-                <a href="#">
+                <a href="ads?brands=5">
                     <img src="ico/Toyota.png">
                     <span>Toyota</span>
                 </a>
             </div>
 
             <div class="fast-box-find" style="margin-left: 30px;">
-                <a href="#">
+                <a href="ads?brands=6">
                     <img src="ico/Mazda.png">
                     <span>Mazda</span>
                 </a>
@@ -163,7 +163,7 @@ if ($active_ads['active_ads'] == 1) {
         </div>
 
         <div class="fast-box-find hyundai" style="margin-left: 30px;">
-            <a href="#">
+            <a href="ads?brands=7   ">
                 <img src="ico/Hyundai.png">
                 <span>Hyundai</span>
             </a>
@@ -187,7 +187,7 @@ if ($active_ads['active_ads'] == 1) {
         <?php
 
         $ad = $mysql -> query(
-            "SELECT * FROM `ads` WHERE `ad_is_showing` = 1 AND ad_time_end > '$date' LIMIT 4"
+            "SELECT * FROM `ads` WHERE `ad_is_showing` = 1 AND ad_time_end > '$date' ORDER BY `id` DESC LIMIT 4"
         );
 
         $temp_value = false;
@@ -261,9 +261,9 @@ if ($active_ads['active_ads'] == 1) {
                 <div class="car-info">
 
                     <div class="car-info-box">
-                        <a href="#" style="margin-right: 5px;">' . $brand['brand'] . '</a>
+                        <a href="ads?brands=' . $brand['id'] . '" style="margin-right: 5px;">' . $brand['brand'] . '</a>
                         <img src="ico/arrow-right.svg" class="icon_20x20" style="margin-right: 5px;">
-                        <a href="#">' . $model['model'] . '</a>
+                        <a href="ads?models=' . $model['id'] . '">' . $model['model'] . '</a>
                     </div>
 
                     <div class="car-info-box">
