@@ -6,16 +6,8 @@ $date = date('Y-m-d');
 
 // -------------------------- //
 
-if (!isset($_GET['list'])) {
-    $list_no = 0;
-    $list_to = $list_no + 10;
-} else {
-    $list_no = $_GET['list'];
-    $list_to = $list_no + 10;
-}
-
 if (!isset($_GET['order'])) {
-    $order = ' ORDER BY `id` DESC';
+    $order = ' ORDER BY `ad_time_publication` DESC';
 } else {
     if ($_GET['order'] == '1') {
         $order = ' ORDER BY `car_price` ASC';
@@ -182,7 +174,7 @@ if ($brands != '') {
     $sql_request = $sql_request . " AND `car_id` IN ($temp)";
 }
 
-$sql_request = $sql_request . $order . " LIMIT $list_to OFFSET $list_no";
+$sql_request = $sql_request . $order;
 
 // -------------------------- //
 

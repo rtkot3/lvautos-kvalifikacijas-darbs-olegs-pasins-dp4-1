@@ -14,6 +14,58 @@ require 'layouts/header.php';
 require "functions/get_data.php";
 include ("functions/sql_connection.php");
 
+if (isset($_GET['brands'])) {
+    echo '<input style="display:none" name="brands" value="'. $_GET['brands']. '" disabled>';
+}
+
+if (isset($_GET['models'])) {
+    echo '<input style="display:none" name="models" value="'. $_GET['models']. '" disabled>';
+}
+
+if (isset($_GET['motor_types'])) {
+    echo '<input style="display:none" name="motor_types" value="'. $_GET['motor_types']. '" disabled>';
+}
+
+if (isset($_GET['motor_power_min'])) {
+    echo '<input style="display:none" name="motor_power_min" value="'. $_GET['motor_power_min']. '" disabled>';
+}
+
+if (isset($_GET['motor_power_max'])) {
+    echo '<input style="display:none" name="motor_power_max" value="'. $_GET['motor_power_max']. '" disabled>';
+}
+
+if (isset($_GET['year_min'])) {
+    echo '<input style="display:none" name="year_min" value="'. $_GET['year_min']. '" disabled>';
+}
+
+if (isset($_GET['year_max'])) {
+    echo '<input style="display:none" name="year_max" value="'. $_GET['year_max']. '" disabled>';
+}
+
+if (isset($_GET['transmissions'])) {
+    echo '<input style="display:none" name="transmissions" value="'. $_GET['transmissions']. '" disabled>';
+}
+
+if (isset($_GET['bodys'])) {
+    echo '<input style="display:none" name="bodys" value="'. $_GET['bodys']. '" disabled>';
+}
+
+if (isset($_GET['colors'])) {
+    echo '<input style="display:none" name="colors" value="'. $_GET['colors']. '" disabled>';
+}
+
+if (isset($_GET['technical_inspections'])) {
+    echo '<input style="display:none" name="technical_inspections" value="'. $_GET['technical_inspections']. '" disabled>';
+}
+
+if (isset($_GET['locations'])) {
+    echo '<input style="display:none" name="locations" value="'. $_GET['locations']. '" disabled>';
+}
+
+if (isset($_GET['order'])) {
+    echo '<input style="display:none" name="order" value="'. $_GET['order']. '" disabled>';
+}
+
 ?>
 
 <div class="container stretch">
@@ -52,7 +104,7 @@ include ("functions/sql_connection.php");
             </div>
 
             <div class="input-select" style="margin: 15px; margin-bottom: 0;">
-                <select onchange="changeURL()">
+                <select id="motor_types" onchange="changeURL()">
                     <option value="" selected >- Dzinēja tips -</option>
                     <?php get_data("motor_type"); ?>
                 </select>
@@ -64,7 +116,7 @@ include ("functions/sql_connection.php");
             <div style="display: flex;">
 
                 <div class="input-select" style="margin: 15px;">
-                    <select onchange="changeURL()">
+                    <select id="motor_power_min" onchange="changeURL()">
                         <option value="" selected>No</option>
 
                     <?php
@@ -82,7 +134,7 @@ include ("functions/sql_connection.php");
                 </div>
 
                 <div class="input-select" style="margin: 15px; margin-left: 0;">
-                    <select onchange="changeURL()">
+                    <select id="motor_power_max" onchange="changeURL()">
                         <option value="" selected>Līdz</option>
 
                     <?php
@@ -108,7 +160,7 @@ include ("functions/sql_connection.php");
             <div style="display: flex;">
 
                 <div class="input-select" style="margin: 15px;">
-                    <select onchange="changeURL()">
+                    <select id="year_min" onchange="changeURL()">
                         <option value="" selected>No</option>
                         <option value="0">Ļoti vecs</option>
 
@@ -127,7 +179,7 @@ include ("functions/sql_connection.php");
                 </div>
 
                 <div class="input-select" style="margin: 15px; margin-left: 0;">
-                    <select onchange="changeURL()">
+                    <select id="year_max" onchange="changeURL()">
                         <option value="" selected>Līdz</option>
                         
                         <?php
@@ -151,7 +203,7 @@ include ("functions/sql_connection.php");
             </div>
 
             <div class="input-select" style="margin: 15px;">
-                <select onchange="changeURL()">
+                <select id="transmissions" onchange="changeURL()">
                     <option value="" selected>- Ātrumkārba -</option>
                     <?php get_data("transmission"); ?>
                 </select>
@@ -161,7 +213,7 @@ include ("functions/sql_connection.php");
             </div>
 
             <div class="input-select" style="margin: 15px;">
-                <select onchange="changeURL()">
+                <select id="bodys" onchange="changeURL()">
                     <option value="" selected>- Automašīnas virsbūve -</option>
                     <?php get_data("body"); ?>
                 </select>
@@ -171,7 +223,7 @@ include ("functions/sql_connection.php");
             </div>
 
             <div class="input-select" style="margin: 15px;">
-                <select onchange="changeURL()">
+                <select id="colors" onchange="changeURL()">
                     <option value="" selected>- Krāsa -</option>
                     <?php get_data("color"); ?>
                 </select>
@@ -181,7 +233,7 @@ include ("functions/sql_connection.php");
             </div>
 
             <div class="input-select" style="margin: 15px;">
-                <select onchange="changeURL()">
+                <select id="technical_inspections" onchange="changeURL()">
                     <option value="" selected>- Tehniskā apskate -</option>
                     <option value="0">Nav</option>
                     <option value="1">Ir</option>
@@ -196,7 +248,7 @@ include ("functions/sql_connection.php");
             </div>
 
             <div class="input-select" style="margin: 15px;">
-                <select onchange="changeURL()">
+                <select id="locations" onchange="changeURL()">
                     <option value="" selected>- Rajons -</option>
                     <?php get_data("location"); ?>
                 </select>
@@ -217,7 +269,7 @@ include ("functions/sql_connection.php");
                 </div>
 
                 <div class="input-select" style="max-width: 205px; height: auto;">
-                    <select style="padding: 10px;" onchange="changeURL()">
+                    <select id="order" style="padding: 10px;" onchange="changeURL()">
                         <option value="" selected>Filtrēšana pēc</option>
                         <option value="1">Cena <</option>
                         <option value="2">Cena ></option>
@@ -231,9 +283,7 @@ include ("functions/sql_connection.php");
 
             </div>
 
-            <div class="result">
-
-            </div>
+            <div class="result"></div>
 
         </div>
 

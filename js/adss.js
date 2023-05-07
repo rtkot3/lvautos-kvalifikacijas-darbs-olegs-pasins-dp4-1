@@ -88,8 +88,40 @@ function changeURL(list = 0) {
         url += '&list=' + data[13];
     }
 
-    history.pushState(null, null, url); adss()
+    history.pushState(null, null, url); adss();
 
 }
 
-adss()
+selectOptions ('brands', document.querySelector('input[name=brands]'));
+selectOptions ('models', document.querySelector('input[name=models]'));
+selectOptions ('motor_types', document.querySelector('input[name=motor_types]'));
+selectOptions ('motor_power_min', document.querySelector('input[name=motor_power_min]'));
+selectOptions ('motor_power_max', document.querySelector('input[name=motor_power_max]'));
+selectOptions ('year_min', document.querySelector('input[name=year_min]'));
+selectOptions ('year_max', document.querySelector('input[name=year_max]'));
+selectOptions ('transmissions', document.querySelector('input[name=transmissions]'));
+selectOptions ('bodys', document.querySelector('input[name=bodys]'));
+selectOptions ('colors', document.querySelector('input[name=colors]'));
+selectOptions ('technical_inspections', document.querySelector('input[name=technical_inspections]'));
+selectOptions ('locations', document.querySelector('input[name=locations]'));
+selectOptions ('order', document.querySelector('input[name=order]'));
+
+function selectOptions(name = null, html = null) {
+
+    if (html == null) {
+        return;
+    }
+
+    var select = document.querySelector('#' + name).querySelectorAll('option');
+
+    select.forEach(value => {
+
+        if (value.value == html.value) {
+
+            document.querySelector('#' + name).options.selectedIndex = value.index;
+        }
+    });
+
+}
+
+adss();

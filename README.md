@@ -15,9 +15,14 @@
 
 ## Demo
 
-- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 30.04.2023)
+- [lvautos.lv](http://lvautos.turboline.lv/) (Vietnes versija: 07.05.2023)
 
 ## Pēdējās izmaiņas
+
+-- [ 07.05.2023 ] --
+
+- Pabeidza visus darbus vietnē;
+- Pieejama demonstrācijas vietne.
 
 -- [ 04.05.2023 ] --
 

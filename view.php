@@ -29,9 +29,18 @@ $user_own = $mysql -> query(
 $user_own = $user_own -> fetch_assoc();
 
 if ($ad['ad_is_showing'] == '0') {
-    if($user_own['email'] != $_SESSION['login']['email']) {
-        header('Location: /ads');
+
+    if ($_SESSION['login']['is_admin'] != 1) {
+
+        if ($user_own['email'] != $_SESSION['login']['email']) {
+            header('Location: /ads');
+        }
     }
+
+}
+
+if ($ad['id'] == null) {
+    header('Location: /ads');
 }
 
 // -------------------------- //
@@ -98,21 +107,21 @@ $user_seller = $user_seller -> fetch_assoc();
 
 $temp = $ad['car_id'];
 
-$model = $mysql -> query(
+$model123 = $mysql -> query(
     "SELECT * FROM `cars_models` WHERE `id` = '$temp'"
 );
 
-$model = $model -> fetch_assoc();
+$model123 = $model123 -> fetch_assoc();
 
 // -------------------------- //
 
-$temp = $model['brand'];
+$temp = $model123['brand'];
 
-$brand = $mysql -> query(
+$brand123 = $mysql -> query(
     "SELECT * FROM `cars_brands` WHERE `id` = '$temp'"
 );
 
-$brand = $brand -> fetch_assoc();
+$brand123 = $brand123 -> fetch_assoc();
 
 // -------------------------- //
 
@@ -162,6 +171,8 @@ require 'layouts/header.php';
 
 ?>
 
+
+
 <div class="container stretch">
 
     <div class="view-box">
@@ -170,7 +181,7 @@ require 'layouts/header.php';
 
             <section class="_1st-block">
 
-                <h1 class="car-logo"><?php echo $brand['brand'] . ' ' . $model['model'] ; ?></h1>
+                <h1 class="car-logo"><?php echo $brand123['brand'] . ' ' . $model123['model'] ; ?></h1>
             
                 <div class="time-view-odometr">
 
@@ -250,12 +261,12 @@ require 'layouts/header.php';
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Marka:</span>
-                            <span class="car-info-light"><?php echo $brand['brand']; ?></span>
+                            <span class="car-info-light"><?php echo $brand123['brand']; ?></span>
                         </div>
 
                         <div class="car-info-section">
                             <span class="car-info-bold">Modelis:</span>
-                            <span class="car-info-light"><?php echo $model['model']; ?></span>
+                            <span class="car-info-light"><?php echo $model123['model']; ?></span>
                         </div>
 
                         <div class="car-info-section">
